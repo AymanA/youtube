@@ -1,0 +1,17 @@
+<div *ngFor="let result of resultList">
+    <div *ngIf="result.id.kind === 'youtube#channel'">
+        <p>channel</p>
+    </div>
+    <div *ngIf="result.id.kind === 'youtube#video'">
+        <p>video</p>
+        <div class="video-container">
+            <div class="thumbnail">
+                <img [src]="result.snippet.thumbnails.default.url" alt="">
+            </div>
+            <div class="vedio-details">
+
+            </div>
+        </div>
+    </div>
+
+</div>

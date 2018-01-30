@@ -1,0 +1,7 @@
+<div>
+    <input type="text" name="query" id="query" [(ngModel)]="searchQuery">
+    <button (click)="getQueryResult()"></button>
+</div>
+<div *ngIf="resultList">
+    <app-result-list [resultList]="resultList"></app-result-list>
+</div>
