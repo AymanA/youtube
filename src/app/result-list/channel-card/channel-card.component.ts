@@ -11,6 +11,8 @@ import {
 import { LoggerService } from '../../services/logger.service';
 import { ListItemContent } from '../../common/models/list-item-content';
 import { ChannelItem } from '../../common/models/channel/channel-item';
+import { ChannelStatistics } from '../../common/models/channel/channel-statistics';
+import { ChannelDetailedSnippet } from '../../common/models/channel/channel-detailed-snippet';
 
 @Component({
   selector: 'app-channel-card',
@@ -21,9 +23,9 @@ export class ChannelCardComponent implements OnInit, OnChanges {
 
   @Input() channelItem;
   channelContent: ListItemContent<ChannelItem>;
-  // isVideoContentAvailable = false;
-  // videoSnippet: VideoDetailedSnippet;
-  // videoStatistics: VideoStatistics;
+  isChannelContentAvailable = false;
+  channelSnippet: ChannelDetailedSnippet;
+  channelStatistics: ChannelStatistics;
   constructor(private channelService: ChannelService, private logger: LoggerService) {}
 
   ngOnInit() {}
@@ -37,10 +39,10 @@ export class ChannelCardComponent implements OnInit, OnChanges {
   getChannelDetails(id: string) {
     this.channelService.getChannelDetailsById(id).subscribe(res => {
       this.logger.log('channelcardComp', 'getChannelDetails', res);
-      // this.videoContent = res;
-      // this.videoSnippet = this.videoContent.items[0].snippet;
-      // this.videoStatistics = this.videoContent.items[0].statistics;
-      // this.isVideoContentAvailable = true;
+      this.channelContent = res;
+      this.channelSnippet = this.channelContent.items[0].snippet;
+      this.channelStatistics = this.channelContent.items[0].statistics;
+      this.isChannelContentAvailable = true;
     });
   }
 
