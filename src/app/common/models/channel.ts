@@ -1,4 +1,4 @@
-import { ChannelId } from './channelId';
+import { ChannelId } from './channel-id';
 import { Snippet } from './snippet';
 
 export interface Channel {

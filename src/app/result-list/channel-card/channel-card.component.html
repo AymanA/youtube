@@ -1,3 +1,19 @@
-<p>
-  channel-card works!
-</p>
+<p>channel</p>
+<div class="channel-container" *ngIf="isChannelContentAvailable">
+    <div class="thumbnail">
+        <!-- <img [src]="videoSnippet.thumbnails.default.url" alt=""> -->
+    </div>
+    <div class="channel-details">
+        <div class="channel-title">
+            <!-- {{videoSnippet.title}} -->
+        </div>
+        <div class="channel-info">
+            <!-- {{videoSnippet.channelTitle}} {{videoStatistics.viewCount | numberPrecision }} views {{videoSnippet.publishedAt | amTimeAgo}} -->
+
+        </div>
+        <div class="channel-description">
+            <!-- {{videoSnippet.description}} -->
+        </div>
+
+    </div>
+</div>

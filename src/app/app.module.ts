@@ -16,6 +16,7 @@ import { ChannelCardComponent } from './result-list/channel-card/channel-card.co
 import { VideoService } from './result-list/video-card/video.service';
 import { LoggerService } from './services/logger.service';
 import { NumberPrecisionPipe } from './common/number-precision.pipe';
+import { ChannelService } from './result-list/channel-card/channel.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NumberPrecisionPipe } from './common/number-precision.pipe';
     Config,
     YoutubeService,
     VideoService,
-    LoggerService
+    LoggerService,
+    ChannelService
   ],
   bootstrap: [AppComponent]
 })

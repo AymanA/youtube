@@ -1,4 +1,4 @@
-import { Localized } from './localized';
+import { Localized } from '../../localized';
 import { Thumbnails } from '../../thumbnails';
 
 export interface VideoDetailedSnippet {
