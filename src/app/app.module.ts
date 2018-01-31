@@ -18,6 +18,7 @@ import { LoggerService } from './services/logger.service';
 import { NumberPrecisionPipe } from './common/pipes/number-precision.pipe';
 import { ChannelService } from './result-list/channel-card/channel.service';
 import { ChannelViewComponent } from './channel/channel-view/channel-view.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChannelViewComponent } from './channel/channel-view/channel-view.compon
     VideoCardComponent,
     ChannelCardComponent,
     NumberPrecisionPipe,
-    ChannelViewComponent
+    ChannelViewComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,

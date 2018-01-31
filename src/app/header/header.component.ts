@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { YoutubeService } from '../services/youtube.service';
 import { LoggerService } from '../services/logger.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,17 +8,19 @@ import { LoggerService } from '../services/logger.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  searchQuery =  'spongebob';
-  resultList: any[];
-  constructor(private youtubeService: YoutubeService, private logger: LoggerService) { }
+  searchQuery = '';
+  constructor(private logger: LoggerService,  private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-  }
-  getQueryResult() {
-    this.youtubeService.getQueryResult(this.searchQuery)
-    .subscribe(res => {
-      this.logger.log('HeaderComp', 'getQueryResult', res);
-      this.resultList = res.items;
+
+    this.route
+      .queryParams
+      .subscribe(params => {
+        this.searchQuery = params['query'] || '';
       });
-    }
+  }
+  searchClick() {
+    this.router.navigate(['search'], { queryParams: { query: this.searchQuery } });
+  }
 }
