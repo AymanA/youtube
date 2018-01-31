@@ -23,6 +23,7 @@ export class ChannelCardComponent implements OnInit, OnChanges {
 
   @Input() channelItem;
   channelContent: ListItemContent<ChannelItem>;
+  channelId;
   isChannelContentAvailable = false;
   channelSnippet: ChannelDetailedSnippet;
   channelStatistics: ChannelStatistics;
@@ -43,6 +44,7 @@ export class ChannelCardComponent implements OnInit, OnChanges {
       this.channelSnippet = this.channelContent.items[0].snippet;
       this.channelStatistics = this.channelContent.items[0].statistics;
       this.isChannelContentAvailable = true;
+      this.channelId = this.channelContent.items[0].id;
     });
   }
 

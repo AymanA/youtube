@@ -1,19 +1,21 @@
 <p>channel</p>
 <div class="channel-container" *ngIf="isChannelContentAvailable">
-    <div class="thumbnail">
-        <img [src]="channelSnippet.thumbnails.default.url" alt="">
-    </div>
-    <div class="channel-details">
-        <div class="channel-title">
-            {{channelSnippet.title}}
+    <a [routerLink]="['channel', channelId]">
+        <div class="thumbnail">
+            <img [src]="channelSnippet.thumbnails.default.url" alt="">
         </div>
-        <div class="channel-info">
-            {{channelStatistics.subscriberCount | numberPrecision }} subscribers
+        <div class="channel-details">
+            <div class="channel-title">
+                {{channelSnippet.title}}
+            </div>
+            <div class="channel-info">
+                {{channelStatistics.subscriberCount | numberPrecision }} subscribers
+
+            </div>
+            <div class="channel-description">
+                {{channelSnippet.description}}
+            </div>
 
         </div>
-        <div class="channel-description">
-            {{channelSnippet.description}}
-        </div>
-
-    </div>
+    </a>
 </div>

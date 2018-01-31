@@ -15,8 +15,9 @@ import { VideoCardComponent } from './result-list/video-card/video-card.componen
 import { ChannelCardComponent } from './result-list/channel-card/channel-card.component';
 import { VideoService } from './result-list/video-card/video.service';
 import { LoggerService } from './services/logger.service';
-import { NumberPrecisionPipe } from './common/number-precision.pipe';
+import { NumberPrecisionPipe } from './common/pipes/number-precision.pipe';
 import { ChannelService } from './result-list/channel-card/channel.service';
+import { ChannelViewComponent } from './channel/channel-view/channel-view.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ChannelService } from './result-list/channel-card/channel.service';
     ResultListComponent,
     VideoCardComponent,
     ChannelCardComponent,
-    NumberPrecisionPipe
+    NumberPrecisionPipe,
+    ChannelViewComponent
   ],
   imports: [
     BrowserModule,
