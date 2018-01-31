@@ -5,14 +5,13 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import {
-  ChannelService
-} from './channel.service';
+
 import { LoggerService } from '../../services/logger.service';
 import { ListItemContent } from '../../common/models/list-item-content';
 import { ChannelItem } from '../../common/models/channel/channel-item';
 import { ChannelStatistics } from '../../common/models/channel/channel-statistics';
 import { ChannelDetailedSnippet } from '../../common/models/channel/channel-detailed-snippet';
+import { ChannelService } from '../../services/channel.service';
 
 @Component({
   selector: 'app-channel-card',
@@ -38,7 +37,7 @@ export class ChannelCardComponent implements OnInit, OnChanges {
 
   }
   getChannelDetails(id: string) {
-    this.channelService.getChannelDetailsById(id).subscribe(res => {
+    this.channelService.getChannelCardDetailsById(id).subscribe(res => {
       this.logger.log('channelcardComp', 'getChannelDetails', res);
       this.channelContent = res;
       this.channelSnippet = this.channelContent.items[0].snippet;

@@ -1,3 +1,25 @@
-<p>
-  channel-view works!
-</p>
+<div *ngIf="isChannelContentAvailable">
+    <div class="channel-info-container">
+        <div class="channel-banner">
+            <img [src]="channelBrandingSettings.image.bannerImageUrl" alt="">
+        </div>
+        <div class="channel-img">
+            <img [src]="channelSnippet.thumbnails.default.url" alt="">
+        </div>
+        <div class="channel-title">
+            {{channelSnippet.title}}
+        </div>
+        <!-- @TODO show subscribe button if this channel not subscribed   -->
+        <div class="channel-subsc-count">
+            {{channelStatistics.subscriberCount | numberPrecision}} subscribers
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="isChannelPlaylistItemsAvailable">
+    <div *ngFor="let listItem of channelSectionVideos">
+        <app-channel-video-card [videoItem]="listItem"></app-channel-video-card>
+    </div>
+
+</div>

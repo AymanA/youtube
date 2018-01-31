@@ -19,5 +19,9 @@ export class VideoService {
     return this.httpService.get(`videos/?id=${id}&part=snippet,contentDetails,statistics`)
       .map(response => response.json());
   }
+  getVideoStatistics(id: string){
+    return this.httpService.get(`videos/?id=${id}&part=statistics`)
+      .map(response => response.json());
+  }
 
 }
