@@ -1,0 +1,19 @@
+<p>video</p>
+<div class="video-container" *ngIf="isVideoContentAvailable">
+    <div class="thumbnail">
+        <img [src]="videoSnippet.thumbnails.default.url" alt="">
+    </div>
+    <div class="video-details">
+        <div class="video-title">
+            {{videoSnippet.title}}
+        </div>
+        <div class="video-info">
+            {{videoSnippet.channelTitle}} {{videoStatistics.viewCount | numberPrecision }} views {{videoSnippet.publishedAt | amTimeAgo}}
+
+        </div>
+        <div class="video-description">
+            {{videoSnippet.description}}
+        </div>
+
+    </div>
+</div>

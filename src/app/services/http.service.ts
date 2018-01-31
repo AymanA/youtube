@@ -17,7 +17,7 @@ export class HttpService extends Http {
               private appRef: ApplicationRef) {
     super(backend, defaultOptions);
   }
-  queryParameters = `&part=snippet&maxResults=${this.cfg.resultLimit}&key=${this.cfg.apiKey}`;
+  queryParameters = `&key=${this.cfg.apiKey}`;
 
   get(url: string, options: RequestOptionsArgs = this.headersOpt): Observable<Response> {
     url = this.cfg.apiUrl + url + this.queryParameters;

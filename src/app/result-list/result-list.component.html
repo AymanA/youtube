@@ -3,15 +3,7 @@
         <p>channel</p>
     </div>
     <div *ngIf="result.id.kind === 'youtube#video'">
-        <p>video</p>
-        <div class="video-container">
-            <div class="thumbnail">
-                <img [src]="result.snippet.thumbnails.default.url" alt="">
-            </div>
-            <div class="vedio-details">
-
-            </div>
-        </div>
+        <app-video-card [videoItem]="result"></app-video-card>
     </div>
 
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubeService } from '../services/youtube.service';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +10,14 @@ import { YoutubeService } from '../services/youtube.service';
 export class HeaderComponent implements OnInit {
   searchQuery =  'spongebob';
   resultList: any[];
-  constructor(private youtubeService: YoutubeService) { }
+  constructor(private youtubeService: YoutubeService, private logger: LoggerService) { }
 
   ngOnInit() {
   }
   getQueryResult() {
     this.youtubeService.getQueryResult(this.searchQuery)
     .subscribe(res => {
-      console.log(res.items);
+      this.logger.log('HeaderComp', 'getQueryResult', res);
       this.resultList = res.items;
       });
     }
