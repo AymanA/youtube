@@ -13,13 +13,14 @@ import { HttpModule } from '@angular/http';
 import { YoutubeService } from './services/youtube.service';
 import { VideoCardComponent } from './result-list/video-card/video-card.component';
 import { ChannelCardComponent } from './result-list/channel-card/channel-card.component';
-import { VideoService } from './result-list/video-card/video.service';
+import { VideoService } from './services/video.service';
 import { LoggerService } from './services/logger.service';
 import { NumberPrecisionPipe } from './common/pipes/number-precision.pipe';
 import { ChannelService } from './services/channel.service';
 import { ChannelViewComponent } from './channel/channel-view/channel-view.component';
 import { SearchResultComponent } from './search-result/search-result.component';
-import { ChannelVideoCardComponent } from './channel/channel-view/channel-video-card/channel-video-card.component';
+import { RelatedVideoCardComponent } from './related-video-card/related-video-card.component';
+import { VideoViewComponent } from './video/video-view/video-view.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +32,11 @@ import { ChannelVideoCardComponent } from './channel/channel-view/channel-video-
     NumberPrecisionPipe,
     ChannelViewComponent,
     SearchResultComponent,
-    ChannelVideoCardComponent
+    RelatedVideoCardComponent,
+    VideoViewComponent
   ],
   imports: [
     BrowserModule,
-    // routing,
     FormsModule,
     HttpModule,
     AppRoutingModule,

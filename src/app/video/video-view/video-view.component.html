@@ -1,0 +1,33 @@
+<div *ngIf="isVideoDetailsAvailable">
+    <div class="video-container">
+        <span [innerHTML]="getVideoFrame(videoDetails.player.embedHtml)"></span>
+    </div>
+    <div class="video-details">
+        <div class="video-title">
+            {{videoDetails.snippet.title}}
+        </div>
+        <div class="video-watchers">
+            {{videoDetails.statistics.viewCount | numberPrecision }} views
+        </div>
+        <div class="video-actions">
+            {{videoDetails.statistics.likeCount | numberPrecision }} likes {{videoDetails.statistics.dislikeCount | numberPrecision }} dislikes
+        </div>
+    </div>
+    <div class="channel-details">
+        <div class="channel-title">
+            {{videoDetails.snippet.channelTitle}}
+        </div>
+        <div class="video-publish-date">
+            {{videoDetails.snippet.publishedAt | numberPrecision }} views
+        </div>
+    </div>
+</div>
+
+<div class="related-videos-list">
+    <div *ngIf="isRelatedVideosAvailable">
+        <div *ngFor="let video of relatedVideos">
+            <app-related-video-card [videoItem]="video" [videoId]="video.id.videoId"></app-related-video-card>
+        </div>
+
+    </div>
+</div>
