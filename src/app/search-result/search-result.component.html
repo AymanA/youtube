@@ -1,3 +1,5 @@
 <div *ngIf="resultList">
     <app-result-list [resultList]="resultList"></app-result-list>
 </div>
+
+<app-show-more-items (click)="loadMoreItems()" [loading]="loadingMoreData"></app-show-more-items>

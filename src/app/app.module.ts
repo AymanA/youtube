@@ -22,6 +22,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { RelatedVideoCardComponent } from './related-video-card/related-video-card.component';
 import { VideoViewComponent } from './video/video-view/video-view.component';
 import { FilterComponent } from './filter/filter.component';
+import { ShowMoreItemsComponent } from './show-more-items/show-more-items.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FilterComponent } from './filter/filter.component';
     SearchResultComponent,
     RelatedVideoCardComponent,
     VideoViewComponent,
-    FilterComponent
+    FilterComponent,
+    ShowMoreItemsComponent,
   ],
   imports: [
     BrowserModule,

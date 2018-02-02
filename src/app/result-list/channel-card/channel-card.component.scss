@@ -5,7 +5,7 @@
     margin-left: 3%;
     display: flex;
     a {
-        color: black;
+        color: $dark-font-color;
         height: 100%;
     }
     @include xs {

@@ -5,7 +5,7 @@
     // @media screen and (max-width: $small-screen) {
     @include xs {
         padding: 5px 6px;
-        border-bottom: 1px solid #EDEDED;
+        border-bottom: 1px solid $border-color;
         margin-bottom: 4px;
         div {
             height: 26px;
