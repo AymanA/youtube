@@ -26,13 +26,89 @@
                 display: inline-block;
                 width: 100%;
             }
-            .channel-videos-count,
+            .channel-channels-count,
             .channel-subscribers-count {
                 opacity: .6;
                 display: inline-block;
                 width: 100%;
             }
             .channel-description {
+                display: none;
+            }
+        }
+    }
+    // @include md {
+    //     // height: 19%;
+    //     .thumbnail {
+    //         width: 30%;
+    //         display: inline-block;
+    //         img {
+    //             border-radius: 50%;
+    //         }
+    //     }
+    //     .channel-details {
+    //         width: 69%;
+    //         float: right;
+    //         padding-top: 15px;
+    //         font-size: smaller;
+    //         .channel-title {
+    //             display: inline-block;
+    //             width: 100%;
+    //         }
+    //         .channel-channels-count,
+    //         .channel-subscribers-count {
+    //             opacity: .6;
+    //             display: inline-block;
+    //             width: 100%;
+    //         }
+    //         .channel-description {
+    //             display: none;
+    //         }
+    //     }
+    // }
+    @include md {
+        width: 100%;
+        height: 100%;
+        margin: 5px 0;
+        .thumbnail {
+            width: 34%;
+            display: inline-block;
+            overflow: hidden;
+            text-align: center;
+            img {
+                border-radius: 50%;
+                width: 50%;
+            }
+        }
+        .channel-details {
+            height: 100%;
+            padding-top: 5px;
+            width: 64%;
+            float: right;
+            font-size: large;
+            .channel-title {
+                display: inline-block;
+                width: 100%;
+                margin-bottom: 19px;
+            }
+            .channel-subscribers-count {
+                display: inline-flex;
+                width: 85%;
+                font-weight: 300;
+                opacity: .6;
+                // display: inline-block;
+                width: auto;
+            }
+            .channel-description {
+                opacity: .7;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                font-weight: 400;
+            }
+            .channel-videos-count {
                 display: none;
             }
         }

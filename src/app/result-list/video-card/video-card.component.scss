@@ -12,8 +12,10 @@
         .thumbnail {
             width: 50%;
             display: inline-block;
+            overflow: hidden;
             img {
                 width: 100%;
+                margin: -10.6% 0;
             }
         }
         .video-details {
@@ -24,6 +26,11 @@
             .video-title {
                 display: inline-block;
                 width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
             }
             .video-info {
                 .video-channel-title,
@@ -45,10 +52,12 @@
         height: 100%;
         margin: 5px 0;
         .thumbnail {
-            width: 290px;
+            width: 34%;
             display: inline-block;
+            overflow: hidden;
             img {
                 width: 100%;
+                margin: -10.6% 0;
             }
         }
         .video-details {
