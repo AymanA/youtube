@@ -1,0 +1,18 @@
+<div class="filter-container">
+    <div class="result-count"></div>
+    <div class="type-filter">
+        <select [(ngModel)]="selectedType" (change)="getResultByfilters()">
+            <option *ngFor="let type of typeFilters" [ngValue]="type.value">{{type.name}}</option>
+          </select>
+    </div>
+    <div class="time-filter">
+        <select [(ngModel)]="selectedUploadTime" (change)="getResultByfilters()">
+            <option *ngFor="let date of uploadDateFilters" [ngValue]="date.value">{{date.name}}</option>
+          </select>
+    </div>
+    <div class="order-filter">
+        <select [(ngModel)]="selectedOrder" (change)="getResultByfilters()">
+            <option *ngFor="let order of orderFilters" [ngValue]="order.value">{{order.name}}</option>
+          </select>
+    </div>
+</div>

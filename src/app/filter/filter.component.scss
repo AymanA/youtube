@@ -1,0 +1,20 @@
+@import 'variables';
+.filter-container {
+    height: 25px;
+    display: flex;
+    @media screen and (max-width: $small-screen) {
+        padding: 5px 6px;
+        border-bottom: 1px solid #EDEDED;
+        div {
+            height: 26px;
+        }
+        select {
+            height: 100%;
+            margin-right: 5px;
+            background-color: $mobile-dropdown-bgc;
+        }
+        .order-filter {
+            display: none;
+        }
+    }
+}

@@ -20,6 +20,12 @@
         "styles": [
             "styles.scss"
         ],
+        "stylePreprocessorOptions": {
+            "includePaths": [
+                ".",
+                "assets/utilities"
+            ]
+        },
         "scripts": [],
         "environmentSource": "environments/environment.ts",
         "environments": {
