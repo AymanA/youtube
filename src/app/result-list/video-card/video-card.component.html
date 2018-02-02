@@ -8,9 +8,17 @@
             <div class="video-title">
                 {{videoSnippet.title}}
             </div>
-            <div class="video-info">
-                {{videoSnippet.channelTitle}} {{videoStatistics.viewCount | numberPrecision }} views {{videoSnippet.publishedAt | amTimeAgo}}
 
+            <div class="video-info">
+                <div class="video-channel-title">
+                    {{videoSnippet.channelTitle}}
+                </div>
+                <div class="video-view-count">
+                    {{videoStatistics.viewCount | numberPrecision }} views
+                </div>
+                <div class="video-publish-at">
+                    {{videoSnippet.publishedAt | amTimeAgo}}
+                </div>
             </div>
             <div class="video-description">
                 {{videoSnippet.description}}

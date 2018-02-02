@@ -1,0 +1,44 @@
+@import 'variables';
+.video-container {
+    width: 95%;
+    margin: 5px 0;
+    margin-left: 3%;
+    display: flex;
+    a {
+        color: black;
+        height: 100%;
+    }
+    @include xs {
+        // height: 19%;
+        .thumbnail {
+            width: 50%;
+            display: inline-block;
+            img {
+                width: 100%;
+            }
+        }
+        .video-details {
+            max-height: 100%;
+            width: 48%;
+            float: right;
+            font-size: smaller;
+            .video-title {
+                display: inline-block;
+                width: 100%;
+            }
+            .video-info {
+                .video-channel-title,
+                .video-view-count,
+                {
+                    opacity: .6;
+                    display: inline-block;
+                    width: 100%;
+                }
+            }
+            .video-description,
+            .video-publish-at {
+                display: none;
+            }
+        }
+    }
+}
