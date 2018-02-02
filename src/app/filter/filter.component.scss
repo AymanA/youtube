@@ -2,9 +2,11 @@
 .filter-container {
     height: 25px;
     display: flex;
-    @media screen and (max-width: $small-screen) {
+    // @media screen and (max-width: $small-screen) {
+    @include xs {
         padding: 5px 6px;
         border-bottom: 1px solid #EDEDED;
+        margin-bottom: 4px;
         div {
             height: 26px;
         }
