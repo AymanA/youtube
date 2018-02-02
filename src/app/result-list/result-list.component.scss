@@ -1,0 +1,8 @@
+@import 'variables';
+.result-item-container {
+    display: flex;
+    div {
+        height: 100%;
+        display: flex;
+    }
+}

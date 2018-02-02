@@ -1,10 +1,10 @@
-<div *ngFor="let result of resultList">
+<div *ngFor="let result of resultList" class="result-item-container">
     <div *ngIf="result.id.kind === 'youtube#channel'">
 
         <app-channel-card [channelItem]="result"></app-channel-card>
     </div>
-    <div *ngIf="result.id.kind === 'youtube#video'">
+    <!-- <div *ngIf="result.id.kind === 'youtube#video '">
         <app-video-card [videoItem]="result"></app-video-card>
-    </div>
+    </div> -->
 
 </div>

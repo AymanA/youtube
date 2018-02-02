@@ -1,0 +1,38 @@
+@import 'variables';
+.channel-container {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    a {
+        color: black;
+        height: 100%;
+    }
+    @include xs {
+        // height: 19%;
+        .thumbnail {
+            width: 30%;
+            display: inline-block;
+            img {
+                border-radius: 50%;
+            }
+        }
+        .channel-details {
+            width: 69%;
+            float: right;
+            padding-top: 15px;
+            .channel-title {
+                display: inline-block;
+                width: 100%;
+            }
+            .channel-videos-count,
+            .channel-subscribers-count {
+                opacity: .6;
+                display: inline-block;
+                width: 100%;
+            }
+            .channel-description {
+                display: none;
+            }
+        }
+    }
+}
