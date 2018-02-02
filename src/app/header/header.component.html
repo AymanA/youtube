@@ -1,6 +1,31 @@
-<!-- <div class="header-container"> -->
-<div>
-    <!-- <img src="../../assets/imgs/youtubelogo-desktop.png" alt=""> -->
-    <input type="text" name="query" id="query" [(ngModel)]="searchQuery" (keyup.enter)="searchClick()">
-    <button (click)="searchClick()"></button>
+<div class="header-container">
+    <!-- <span class="youtube-icon">
+        <i class="fab fa-youtube fa-lg"></i>
+    </span> -->
+    <span class="youtube-title">
+       YouTube
+       <small class="youtube-localize">
+        EG
+     </small>
+    </span>
+    <div class="search-container">
+        <input type="text" name="query" id="query" [(ngModel)]="searchQuery" (keyup.enter)="searchClick()">
+        <button (click)="searchClick()"><i class="fas fa-search"></i>
+        </button>
+    </div>
+    <div class="mobile-youtube-icon">
+        <i class="fab fa-youtube fa-lg"></i>
+    </div>
+    <div class="binding-data" [ngSwitch]="getCurrentPath()">
+        <span *ngSwitchCase="'channel'">channel</span>
+        <span *ngSwitchCase="'video'">YouTube</span>
+        <span *ngSwitchCase="'search'">{{searchQuery}}</span>
+        <span *ngSwitchDefault>YouTube</span>
+    </div>
+    <div class="mobile-search-container">
+        <span>
+            <i class="fas fa-search fa-sm"></i>
+        </span>
+    </div>
+
 </div>
