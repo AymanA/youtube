@@ -1,4 +1,4 @@
-<div *ngFor="let result of resultList">
+<div *ngFor="let result of resultList" class="result-item-container">
     <div *ngIf="result.id.kind === 'youtube#channel'">
 
         <app-channel-card [channelItem]="result"></app-channel-card>

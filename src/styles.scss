@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'variables';
 html,
 body {
     margin: 0;
@@ -7,4 +8,8 @@ body {
     // height: 100%;
     // width: 100%;
     font-family: Roboto;
+    // @media screen and (max-width: $small-screen) {
+    @include sm {
+        background-color: $white-color;
+    }
 }

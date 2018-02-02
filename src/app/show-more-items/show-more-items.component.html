@@ -1,0 +1,7 @@
+<div class="load-more">
+    <button *ngIf="!loading" (click)="loadMore()">Show more items</button>
+    <span *ngIf="loading">
+        <i  class="fas fa-spinner fa-2x fa-pulse"></i>
+    </span>
+
+</div>

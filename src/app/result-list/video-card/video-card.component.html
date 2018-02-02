@@ -1,4 +1,5 @@
 <!-- @TODO make searchQuery highlited -->
+<!-- @TODO show cc mark at the end of video -->
 <div class="video-container" *ngIf="isVideoContentAvailable">
     <a [routerLink]="['/video', videoId]">
         <div class="thumbnail">
@@ -8,9 +9,17 @@
             <div class="video-title">
                 {{videoSnippet.title}}
             </div>
-            <div class="video-info">
-                {{videoSnippet.channelTitle}} {{videoStatistics.viewCount | numberPrecision }} views {{videoSnippet.publishedAt | amTimeAgo}}
 
+            <div class="video-info">
+                <div class="video-channel-title">
+                    {{videoSnippet.channelTitle}}
+                </div>
+                <div class="video-view-count">
+                    {{videoStatistics.viewCount | numberPrecision }} views
+                </div>
+                <div class="video-publish-at">
+                    {{videoSnippet.publishedAt | amTimeAgo}}
+                </div>
             </div>
             <div class="video-description">
                 {{videoSnippet.description}}

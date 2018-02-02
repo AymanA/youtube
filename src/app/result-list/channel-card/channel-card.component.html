@@ -8,9 +8,11 @@
             <div class="channel-title">
                 {{channelSnippet.title}}
             </div>
-            <div class="channel-info">
+            <div class="channel-videos-count">
+                {{channelStatistics.videoCount | numberPrecision }} videos
+            </div>
+            <div class="channel-subscribers-count">
                 {{channelStatistics.subscriberCount | numberPrecision }} subscribers
-
             </div>
             <div class="channel-description">
                 {{channelSnippet.description}}

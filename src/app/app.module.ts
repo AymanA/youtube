@@ -21,6 +21,8 @@ import { ChannelViewComponent } from './channel/channel-view/channel-view.compon
 import { SearchResultComponent } from './search-result/search-result.component';
 import { RelatedVideoCardComponent } from './related-video-card/related-video-card.component';
 import { VideoViewComponent } from './video/video-view/video-view.component';
+import { FilterComponent } from './filter/filter.component';
+import { ShowMoreItemsComponent } from './show-more-items/show-more-items.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { VideoViewComponent } from './video/video-view/video-view.component';
     ChannelViewComponent,
     SearchResultComponent,
     RelatedVideoCardComponent,
-    VideoViewComponent
+    VideoViewComponent,
+    FilterComponent,
+    ShowMoreItemsComponent,
   ],
   imports: [
     BrowserModule,

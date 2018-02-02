@@ -1,40 +1,31 @@
-$red-color: #F60000;
-$white-color: #FFFFFF;
-$small-screen: 425px;
-$medium-screen: 768px;
-$large-screen: 1200px;
+@import 'variables';
 .header-container {
     width: 100%;
     display: -webkit-inline-flex;
-    @media screen and (max-width: $small-screen) {
+    // @media screen and (max-width: $small-screen) {
+    @include xs {
         background-color: $red-color;
         height: 34px;
-        .mobile-youtube-icon {
-            // width: 15%;
-            margin-left: 9px;
+        .youtube-icon {
+            margin-left: 3%;
             color: $white-color;
             padding-top: 7px;
         }
         .mobile-search-container {
             color: $white-color;
             padding-top: 10px;
-            width: 85%;
+            width: -webkit-fill-available;
             span {
-                margin-right: 18px;
+                margin-right: 7%;
                 float: right;
             }
         }
         .binding-data {
-            margin-left: 6px;
+            margin-left: 2%;
             color: $white-color;
             padding-top: 10px;
             font-weight: 600;
             font-size: smaller;
-        }
-        .youtube-icon {
-            margin-left: 9px;
-            color: $white-color;
-            padding-top: 7px;
         }
         .youtube-title {
             display: none;
@@ -50,22 +41,31 @@ $large-screen: 1200px;
                 padding-top: 10px;
             }
         }
+    }
+    @include sm {
         .mobile-search-container {
-            i {
+            color: $white-color;
+            padding-top: 10px;
+            width: 55%;
+            span {
+                margin-right: 18px;
                 float: right;
-                color: $white-color;
-                padding-top: 10px;
             }
         }
     }
-    @media screen and (min-width: $medium-screen) {
+    // @media screen and (min-width: $medium-screen) {
+    @include md {
         background-color: $white-color;
         height: 55px;
         -webkit-box-shadow: 0px 3px 10px -2px rgba(148, 148, 148, 1);
         -moz-box-shadow: 0px 3px 10px -2px rgba(148, 148, 148, 1);
         box-shadow: 0px 3px 10px -2px rgba(148, 148, 148, 1);
+        .binding-data,
+        .mobile-search-container {
+            display: none;
+        }
         .youtube-icon {
-            margin-left: 133px;
+            margin-left: 16%;
             color: $red-color;
             padding-top: 17px;
         }
@@ -79,7 +79,7 @@ $large-screen: 1200px;
             }
         }
         .search-container {
-            margin-left: 74px;
+            margin-left: 8%;
             width: 50%;
             padding: 10px;
             display: flex;
