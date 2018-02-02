@@ -13,10 +13,13 @@
         select {
             height: 100%;
             margin-right: 5px;
-            background-color: $mobile-dropdown-bgc;
+            background-color: $mobile-dropdown-background-color;
         }
         .order-filter {
             display: none;
         }
+    }
+    @include md {
+        margin-top: 55px;
     }
 }

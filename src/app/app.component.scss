@@ -1,0 +1,6 @@
+@import 'variables';
+.content {
+    @include md {
+        padding: 0 16%;
+    }
+}
