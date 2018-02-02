@@ -8,8 +8,9 @@ body {
     // height: 100%;
     // width: 100%;
     font-family: Roboto;
+    background-color: $app-background-color;
     // @media screen and (max-width: $small-screen) {
-    @include sm {
+    @include xs {
         background-color: $white-color;
     }
 }
