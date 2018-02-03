@@ -1,6 +1,4 @@
 @import 'variables';
-$filter-color: #6E6E6E;
-$filter-border-color: #EDEDEE;
 .filter-container {
     height: 25px;
     display: flex;
@@ -10,7 +8,7 @@ $filter-border-color: #EDEDEE;
         border-bottom: 1px solid $border-color;
         margin-bottom: 4px;
         div {
-            height: 26px;
+            // height: 26px;
         }
         select {
             height: 100%;
@@ -29,6 +27,16 @@ $filter-border-color: #EDEDEE;
         }
         .filters-group {
             display: flex;
+            width: 100%;
+            .type-filter {
+                width: 25%;
+                margin-right: 2.5%;
+                order: 1;
+            }
+            .time-filter {
+                width: 25%;
+                order: 2;
+            }
         }
     }
     @include md {

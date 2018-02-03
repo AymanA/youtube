@@ -1,0 +1,66 @@
+@import 'variables';
+@include xs {
+    .dropbtn {
+        background-color: $app-background-color;
+        color: $filter-color;
+        border: solid #EDEDED 0px;
+        text-decoration: none;
+        font-size: 14px;
+        outline: none;
+        width: 100%;
+        text-align: left;
+        height: 24px;
+    }
+    // .dropbtn:hover,
+    // .dropbtn:focus {
+    //     background-color: #2980B9;
+    // }
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background-color: $app-background-color;
+        color: $filter-color;
+        border: solid #EDEDED 1px;
+        text-decoration: none;
+    }
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: $app-background-color;
+        min-width: 100%;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: $filter-color;
+        // padding: 3px 8px;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border: solid 1px $filter-border-color;
+    }
+    // /* Change color of dropdown links on hover */
+    // .dropdown-content div+a:hover {
+    //     background-color: lightblue;
+    // }
+    .show {
+        display: block;
+    }
+    .dropdown:after {
+        content: "▼";
+        padding: 8px 0px;
+        position: absolute;
+        right: 10px;
+        top: 0;
+        font-size: 7px;
+        z-index: 1;
+        text-align: center;
+        width: 1%;
+        height: 54%;
+        pointer-events: none;
+    }
+}

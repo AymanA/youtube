@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { LoggerService } from '../services/logger.service';
 
@@ -11,17 +11,19 @@ export class FilterComponent implements OnInit {
 
   // @TODO make constant file for all Enums
   typeFilters = [
-      {value: 'all', name: 'All'},
-      {value: 'channel', name: 'Channel'},
-      {value: 'playlist', name: 'Playlist'}
+    {value: 'all', name: 'All', visible: true, mobile: true},
+    {value: 'video', name: 'Video', visible: true, mobile: false},
+    {value: 'channel', name: 'Channel', visible: true, mobile: true},
+    {value: 'playlist', name: 'Playlist', visible: true, mobile: true}
     ];
 
 
   uploadDateFilters = [
-    {value: 'any', name: 'Any time'},
-    {value: 'today', name: 'Today'},
-    {value: 'week', name: 'This week'},
-    {value: 'month', name: 'This week'}
+    {value: 'any', name: 'Any time', visible: true, mobile: true},
+    {value: 'hour', name: 'Last hour', visible: true, mobile: false},
+    {value: 'today', name: 'Today', visible: true, mobile: true},
+    {value: 'week', name: 'This week', visible: true, mobile: true},
+    {value: 'month', name: 'This week', visible: true, mobile: true}
   ];
 
   orderFilters = [
@@ -32,11 +34,15 @@ export class FilterComponent implements OnInit {
   ];
 
   totalResults;
-  selectedType = 'all';
-  selectedUploadTime = 'any';
-  selectedOrder = 'relevance';
+  typeFilterTitle =  {name: 'All'};
+  UploadTimeFilterTitle =  {name: 'Any time'};
+  OrderFilterTitle = {name: 'Relevance'};
+  selectedTypeFilter;
+  selectedUploadTimeFilter;
+  selectedOrderFilter;
   // showFiltersGroup = false;
   showFiltersGroup = true;
+  deviceType;
 
   constructor(private logger: LoggerService, private searchService: SearchService) { }
 
@@ -44,6 +50,8 @@ export class FilterComponent implements OnInit {
     this.searchService.totalResult.subscribe(value => {
       this.formatTotalResult(value);
     });
+    this.getDeviceType();
+    this.prepareList();
   }
   formatTotalResult(totalResult: number) {
     this.logger.log('FilterComponent', 'formatTotalResult', totalResult);
@@ -56,6 +64,37 @@ export class FilterComponent implements OnInit {
   }
   // @TODO Implement filters feature
   ResultByfilters() {}
+
+  filterResultsByType(type) {
+    this.selectedTypeFilter = type;
+    this.logger.log('FilterComponent', 'filterResultsByType', type);
+  }
+
+  filterResultsByDate(type) {
+    this.selectedUploadTimeFilter = type;
+    this.logger.log('FilterComponent', 'filterResultsByDate', type);
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.getDeviceType();
+    this.prepareList();
+  }
+
+  getDeviceType() {
+    if (window.innerWidth < 768) {
+      this.deviceType = 'mobile';
+    } else {
+      this.deviceType = 'other';
+    }
+  }
+
+  prepareList() {
+    this.typeFilters.map(type => {
+      if ( this.deviceType === 'mobile' && !type.mobile) {
+        type.visible = false;
+      }
+    });
+  }
 
 
 }

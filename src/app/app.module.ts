@@ -25,6 +25,7 @@ import { FilterComponent } from './filter/filter.component';
 import { ShowMoreItemsComponent } from './show-more-items/show-more-items.component';
 import {MdProgressBarModule} from '../../node_modules/@angular2-material/progress-bar/progress-bar';
 import { SearchService } from './services/search.service';
+import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SearchService } from './services/search.service';
     VideoViewComponent,
     FilterComponent,
     ShowMoreItemsComponent,
+    DropdownFilterComponent,
   ],
   imports: [
     BrowserModule,

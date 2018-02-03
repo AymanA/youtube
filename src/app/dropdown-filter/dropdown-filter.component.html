@@ -1,0 +1,10 @@
+<div class="dropdown">
+    <button (click)="toggle()" class="dropbtn">{{dropDownTitle.name}}</button>
+    <div id="dropdown-list" class="dropdown-content">
+        <div *ngFor="let type of dropDownOptions">
+            <a *ngIf="type.visible" (click)="onClick($event, type)">
+                    {{type.name}}
+                </a>
+        </div>
+    </div>
+</div>
