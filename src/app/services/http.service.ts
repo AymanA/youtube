@@ -18,7 +18,7 @@ export class HttpService extends Http {
     super(backend, defaultOptions);
   }
   queryParameters = `&key=${this.cfg.apiKey}`;
-
+// @TODO repeat request if request fail
   get(url: string, options: RequestOptionsArgs = this.headersOpt): Observable<Response> {
     url = this.cfg.apiUrl + url + this.queryParameters;
     return super.get(url, options).do(res => {
