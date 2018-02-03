@@ -1,6 +1,6 @@
 <!-- @TODO make searchQuery highlited -->
 <!-- @TODO show cc mark at the end of video -->
-<div class="video-container" *ngIf="isVideoContentAvailable">
+<div class="video-container" *ngIf="isVideoContentAvailable && videoSnippet.liveBroadcastContent != 'live'">
     <a [routerLink]="['/video', videoId]">
         <div class="thumbnail">
 

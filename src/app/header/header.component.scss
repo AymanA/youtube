@@ -6,6 +6,12 @@
     left: 0;
     opacity: 1;
     z-index: 2;
+    @include xs {
+        display: none;
+    }
+    @include sm {
+        display: none;
+    }
 }
 
 .header-container {
