@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SearchService } from '../services/search.service';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'app-filter',
@@ -29,15 +31,31 @@ export class FilterComponent implements OnInit {
     {value: 'rating', name: 'Rating'}
   ];
 
+  totalResults;
   selectedType = 'all';
   selectedUploadTime = 'any';
   selectedOrder = 'relevance';
-  constructor() { }
+  // showFiltersGroup = false;
+  showFiltersGroup = true;
+
+  constructor(private logger: LoggerService, private searchService: SearchService) { }
 
   ngOnInit() {
+    this.searchService.totalResult.subscribe(value => {
+      this.formatTotalResult(value);
+    });
+  }
+  formatTotalResult(totalResult: number) {
+    this.logger.log('FilterComponent', 'formatTotalResult', totalResult);
+    this.totalResults = totalResult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
+  toggleFiltersGroupVisibilty() {
+    this.showFiltersGroup = !this.showFiltersGroup;
+    console.log('hide', this.showFiltersGroup);
+  }
   // @TODO Implement filters feature
   ResultByfilters() {}
+
 
 }

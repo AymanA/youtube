@@ -1,18 +1,50 @@
 <div class="filter-container">
-    <div class="result-count"></div>
-    <div class="type-filter">
-        <select [(ngModel)]="selectedType" (change)="getResultByfilters()">
+    <div class="filter-control-row">
+        <div class="result-count">
+            <span *ngIf="!filtered">
+                About {{totalResults}} results
+        </span>
+            <span *ngIf="filtered">
+                About {{totalResults}} filtered results
+        </span>
+
+        </div>
+        <div class="filter-group-toggle">
+
+            <button (click)="toggleFiltersGroupVisibilty()">
+                 <i class="material-icons">filter_list</i> 
+                <span>
+                    FILTER
+                </span>
+                </button>
+        </div>
+    </div>
+    <div class="filters-group" *ngIf="showFiltersGroup">
+        <!-- @TODO make component for filter -->
+        <div class="time-filter">
+            <div class="filter-title">
+                UPLOAD DATE
+            </div>
+            <select [(ngModel)]="selectedUploadTime" (change)="getResultByfilters()">
+                    <option *ngFor="let date of uploadDateFilters" [ngValue]="date.value">{{date.name}}</option>
+                  </select>
+        </div>
+        <div class="type-filter">
+            <div class="filter-title">
+                TYPE
+            </div>
+            <select [(ngModel)]="selectedType" (change)="getResultByfilters()">
             <option *ngFor="let type of typeFilters" [ngValue]="type.value">{{type.name}}</option>
           </select>
-    </div>
-    <div class="time-filter">
-        <select [(ngModel)]="selectedUploadTime" (change)="getResultByfilters()">
-            <option *ngFor="let date of uploadDateFilters" [ngValue]="date.value">{{date.name}}</option>
-          </select>
-    </div>
-    <div class="order-filter">
-        <select [(ngModel)]="selectedOrder" (change)="getResultByfilters()">
+        </div>
+
+        <div class="order-filter">
+            <div class="filter-title">
+                SORT BY
+            </div>
+            <select [(ngModel)]="selectedOrder" (change)="getResultByfilters()">
             <option *ngFor="let order of orderFilters" [ngValue]="order.value">{{order.name}}</option>
           </select>
+        </div>
     </div>
 </div>

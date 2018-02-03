@@ -24,6 +24,7 @@ import { VideoViewComponent } from './video/video-view/video-view.component';
 import { FilterComponent } from './filter/filter.component';
 import { ShowMoreItemsComponent } from './show-more-items/show-more-items.component';
 import {MdProgressBarModule} from '../../node_modules/@angular2-material/progress-bar/progress-bar';
+import { SearchService } from './services/search.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {MdProgressBarModule} from '../../node_modules/@angular2-material/progres
     YoutubeService,
     VideoService,
     LoggerService,
-    ChannelService
+    ChannelService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

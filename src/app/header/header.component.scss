@@ -6,10 +6,10 @@
     left: 0;
     opacity: 1;
     z-index: 2;
-    @include xs {
-        display: none;
+    md-progress-bar {
+        height: 2px;
     }
-    @include sm {
+    @include xs {
         display: none;
     }
 }
@@ -98,7 +98,7 @@
         }
         .search-container {
             margin-left: 8%;
-            width: 50%;
+            width: 51%;
             padding: 10px;
             display: flex;
             input {
@@ -110,6 +110,8 @@
                 width: 14%;
                 border: solid $border-color 1px;
                 background-color: #F8F8F8;
+                cursor: pointer;
+                outline: none;
             }
         }
     }

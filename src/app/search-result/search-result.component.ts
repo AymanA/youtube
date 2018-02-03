@@ -12,6 +12,7 @@ import {
 import {
   ActivatedRoute
 } from '@angular/router';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search-result',
@@ -25,14 +26,13 @@ export class SearchResultComponent implements OnInit {
   nextPageToken: string;
   loadingMoreData = false;
   scrolled = false;
+  totalResult;
 
   constructor(private youtubeService: YoutubeService, private logger: LoggerService,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute, private searchService: SearchService) {}
 
   ngOnInit() {
-    this.route
-      .queryParams
-      .subscribe(params => {
+    this.route.queryParams.subscribe(params => {
         this.searchQuery = params['query'] || '';
         this.logger.log('SearchResultComponent', 'init', params);
         this.getQueryResult(this.searchQuery);
@@ -44,6 +44,7 @@ export class SearchResultComponent implements OnInit {
         this.logger.log('SearchResultComponent', 'getQueryResult', res);
         this.resultList = res.items;
         this.nextPageToken = res.nextPageToken;
+        this.searchService.totalResult.next(res.pageInfo.totalResults);
       });
   }
 

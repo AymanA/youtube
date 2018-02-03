@@ -1,4 +1,6 @@
 @import 'variables';
+$filter-color: #6E6E6E;
+$filter-border-color: #EDEDEE;
 .filter-container {
     height: 25px;
     display: flex;
@@ -14,12 +16,78 @@
             height: 100%;
             margin-right: 5px;
             background-color: $mobile-dropdown-background-color;
+            color: $dark-font-color;
+            border: solid #EDEDED 1px;
+            text-decoration: none;
         }
         .order-filter {
             display: none;
         }
+        .filter-control-row,
+        .filter-title {
+            display: none;
+        }
+        .filters-group {
+            display: flex;
+        }
     }
     @include md {
+        height: auto;
         margin-top: 55px;
+        border-bottom: solid 1px $filter-border-color;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        display: block;
+        .filter-control-row {
+            padding-top: 35px;
+            width: 100%;
+            .result-count {
+                display: inline-block;
+                color: #181818;
+            }
+            .filter-group-toggle {
+                float: right;
+                margin-right: 1%;
+                color: $filter-color;
+                display: flex;
+                button {
+                    background-color: $app-background-color;
+                    color: $filter-color;
+                    padding: 0px 17px 3px 4px;
+                    border: solid #EDEDED 0px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    display: flex;
+                    outline: none;
+                    span {
+                        padding-top: 4px;
+                        margin-left: 6px;
+                    }
+                }
+            }
+        }
+        .filters-group {
+            display: inline-flex;
+            margin-top: 30px;
+            width: 100%;
+            .type-filter,
+            .order-filter,
+            .time-filter {
+                width: 25%;
+                margin-right: 4%;
+                height: 300px;
+                .filter-title {
+                    border-bottom: solid 1px $border-color;
+                    padding-bottom: 14px;
+                }
+            }
+            select {
+                background-color: $app-background-color;
+                color: $filter-color;
+                padding: 0px 17px 3px 4px;
+                border: solid #EDEDED 0px;
+                text-decoration: none;
+            }
+        }
     }
 }
