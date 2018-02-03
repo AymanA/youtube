@@ -26,6 +26,7 @@ export class VideoCardComponent implements OnInit, OnChanges {
   videoSnippet: VideoDetailedSnippet;
   videoStatistics: VideoStatistics;
   videoId: string;
+  videoDuration;
   constructor(private videoService: VideoService, private logger: LoggerService) {}
 
   ngOnInit() {}
@@ -43,8 +44,27 @@ export class VideoCardComponent implements OnInit, OnChanges {
       this.videoContent = res;
       this.videoSnippet = this.videoContent.items[0].snippet;
       this.videoStatistics = this.videoContent.items[0].statistics;
+      this.getVideoDuration(this.videoContent.items[0].contentDetails.duration);
       this.isVideoContentAvailable = true;
     });
+  }
+
+  getVideoDuration(videoDuration: string) {
+    const pattern = /PT((([0-9]+)H)?([0-9]+)M)?(([0-9]+)S)?/;
+    const result = pattern.exec(videoDuration);
+    let duration = '';
+    if (result[3]) {
+      duration += result[3] + ':';
+    }
+    if (result[4]) {
+      duration += result[4] + ':';
+    }
+    if (result[6]) {
+      duration += result[6];
+    }
+    this.videoDuration = duration;
+    this.logger.log('VideoCardComponent', 'getVideoDuration', 'videoDuration',
+     videoDuration, result, duration);
   }
 
 }

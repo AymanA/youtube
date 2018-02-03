@@ -8,6 +8,9 @@
             {{videoSnippet.thumbnails.medium ? videoSnippet.thumbnails.medium.url : videoSnippet.thumbnails.default.url}} 480w,
             {{videoSnippet.thumbnails.standard ? videoSnippet.thumbnails.standard.url : videoSnippet.thumbnails.default.url}} 800w" sizes="(max-width: 320px) 280px,
              (max-width: 480px) 440px, 800px" [src]="videoSnippet.thumbnails.default.url" alt="">
+            <div class="video-duration">
+                {{videoDuration}}
+            </div>
         </div>
         <div class="video-details">
             <div class="video-title">

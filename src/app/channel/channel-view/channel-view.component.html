@@ -20,6 +20,7 @@
 <div *ngIf="isChannelPlaylistItemsAvailable">
     <div *ngFor="let listItem of channelSectionVideos">
         <app-related-video-card [videoItem]="listItem" [videoId]="listItem.contentDetails.videoId"></app-related-video-card>
+        <!-- <app-video-card [videoItem]="listItem" [videoId]="listItem.contentDetails.videoId"></app-video-card> -->
     </div>
 
 </div>
