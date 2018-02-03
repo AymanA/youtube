@@ -1,4 +1,13 @@
 @import 'variables';
+.loader-overlay {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 2;
+}
+
 .header-container {
     width: 100%;
     display: -webkit-inline-flex;

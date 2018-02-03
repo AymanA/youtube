@@ -23,6 +23,7 @@ import { RelatedVideoCardComponent } from './related-video-card/related-video-ca
 import { VideoViewComponent } from './video/video-view/video-view.component';
 import { FilterComponent } from './filter/filter.component';
 import { ShowMoreItemsComponent } from './show-more-items/show-more-items.component';
+import {MdProgressBarModule} from '../../node_modules/@angular2-material/progress-bar/progress-bar';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ShowMoreItemsComponent } from './show-more-items/show-more-items.compon
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MomentModule
+    MomentModule,
+    MdProgressBarModule,
   ],
   providers: [
     HttpService,

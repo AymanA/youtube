@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoggerService } from '../services/logger.service';
 import { Router, ActivatedRoute, NavigationStart, Event, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,9 @@ import { Observable } from 'rxjs/Observable';
 export class HeaderComponent implements OnInit {
   searchQuery = '';
   currentUrl;
+  spinner = false;
   constructor(private logger: LoggerService,  private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private httpService: HttpService) { }
 
   ngOnInit() {
     this.router.events.subscribe((event: Event) => {
@@ -23,12 +25,15 @@ export class HeaderComponent implements OnInit {
       }
     });
 
-
-    this.route
-      .queryParams
-      .subscribe(params => {
+    this.route.queryParams.subscribe(params => {
         this.searchQuery = params['query'] || '';
       });
+
+    this.httpService.spinner.subscribe((val: boolean) => {
+      this.spinner = val;
+      this.logger.log('HeaderComponent', 'init', 'spinner', this.spinner);
+    });
+
   }
   searchClick() {
     this.router.navigate(['search'], { queryParams: { query: this.searchQuery } });
