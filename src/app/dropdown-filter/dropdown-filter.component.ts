@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown-filter',
@@ -8,14 +8,19 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class DropdownFilterComponent implements OnInit {
   @Input() dropDownOptions;
   @Input() dropDownTitle;
+  @Input() dropDownId;
   @Output() clicked: EventEmitter<any> = new EventEmitter<any>();
+  deviceType;
+
   constructor() { }
 
   ngOnInit() {
+    this.getDeviceType();
+    this.prepareList();
   }
 
   toggle() {
-    document.getElementById('dropdown-list').classList.toggle('show');
+    document.getElementById(`${this.dropDownId}`).classList.toggle('show');
   }
 
   onClick(event, selectedOption) {
@@ -32,6 +37,28 @@ export class DropdownFilterComponent implements OnInit {
         }
       }
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.getDeviceType();
+    this.prepareList();
+  }
+
+  getDeviceType() {
+    if (window.innerWidth < 768) {
+      this.deviceType = 'mobile';
+    } else {
+      this.deviceType = 'other';
+    }
+  }
+
+  prepareList() {
+    this.dropDownOptions.map(type => {
+      if ( this.deviceType === 'mobile' && !type.mobile) {
+        type.visible = false;
+      }
+    });
   }
 
 

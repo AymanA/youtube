@@ -23,7 +23,7 @@ export class FilterComponent implements OnInit {
     {value: 'hour', name: 'Last hour', visible: true, mobile: false},
     {value: 'today', name: 'Today', visible: true, mobile: true},
     {value: 'week', name: 'This week', visible: true, mobile: true},
-    {value: 'month', name: 'This week', visible: true, mobile: true}
+    {value: 'month', name: 'This month', visible: true, mobile: true}
   ];
 
   orderFilters = [
@@ -42,7 +42,6 @@ export class FilterComponent implements OnInit {
   selectedOrderFilter;
   // showFiltersGroup = false;
   showFiltersGroup = true;
-  deviceType;
 
   constructor(private logger: LoggerService, private searchService: SearchService) { }
 
@@ -50,8 +49,6 @@ export class FilterComponent implements OnInit {
     this.searchService.totalResult.subscribe(value => {
       this.formatTotalResult(value);
     });
-    this.getDeviceType();
-    this.prepareList();
   }
   formatTotalResult(totalResult: number) {
     this.logger.log('FilterComponent', 'formatTotalResult', totalResult);
@@ -73,27 +70,6 @@ export class FilterComponent implements OnInit {
   filterResultsByDate(type) {
     this.selectedUploadTimeFilter = type;
     this.logger.log('FilterComponent', 'filterResultsByDate', type);
-  }
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.getDeviceType();
-    this.prepareList();
-  }
-
-  getDeviceType() {
-    if (window.innerWidth < 768) {
-      this.deviceType = 'mobile';
-    } else {
-      this.deviceType = 'other';
-    }
-  }
-
-  prepareList() {
-    this.typeFilters.map(type => {
-      if ( this.deviceType === 'mobile' && !type.mobile) {
-        type.visible = false;
-      }
-    });
   }
 
 

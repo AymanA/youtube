@@ -28,7 +28,7 @@
             <!-- <select [(ngModel)]="selectedUploadTime" (change)="getResultByfilters()">
                     <option *ngFor="let date of uploadDateFilters" [ngValue]="date.value">{{date.name}}</option>
                   </select> -->
-            <app-dropdown-filter [dropDownTitle]="UploadTimeFilterTitle" [dropDownOptions]="uploadDateFilters" (clicked)="filterResultsByDate($event)"></app-dropdown-filter>
+            <app-dropdown-filter [dropDownId]="'time-filter'" [dropDownTitle]="UploadTimeFilterTitle" [dropDownOptions]="uploadDateFilters" (clicked)="filterResultsByDate($event)"></app-dropdown-filter>
 
         </div>
         <div class="type-filter">
@@ -38,7 +38,7 @@
             <!-- <select [(ngModel)]="selectedType" (change)="getResultByfilters()">
             <option *ngFor="let type of typeFilters" [ngValue]="type.value">{{type.name}}</option>
           </select> -->
-            <app-dropdown-filter [dropDownTitle]="typeFilterTitle" [dropDownOptions]="typeFilters" (clicked)="filterResultsByType($event)"></app-dropdown-filter>
+            <app-dropdown-filter [dropDownId]="'type-filter'" [dropDownTitle]="typeFilterTitle" [dropDownOptions]="typeFilters" (clicked)="filterResultsByType($event)"></app-dropdown-filter>
 
         </div>
 
