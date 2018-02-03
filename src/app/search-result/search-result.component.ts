@@ -56,7 +56,6 @@ export class SearchResultComponent implements OnInit {
     .subscribe(res => {
         this.logger.log('SearchResultComponent', 'loadMoreItems', res);
         this.resultList = this.resultList.concat(res.items);
-        console.log('updatedlist', this.resultList);
         this.nextPageToken = res.nextPageToken;
         this.loadingMoreData = false;
         this.scrolled = false;
@@ -67,10 +66,12 @@ export class SearchResultComponent implements OnInit {
   }
 // @TODO debounce the scroll event
   @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: any) {
-    if (!this.scrolled && ((window.innerHeight + window.scrollY) === document.body.offsetHeight)) {
-      console.log('scrollEvent', event);
-      console.log('reached bottom');
+  onWindowScroll() {
+    let bodyHeight = document.body.offsetHeight;
+    if (document.documentElement.clientWidth >= 768) {
+      bodyHeight = bodyHeight + 65;
+    }
+    if (!this.scrolled && ((window.innerHeight + window.scrollY) === bodyHeight)) {
       this.loadMoreItems();
     }
   }
