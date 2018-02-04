@@ -1,0 +1,12 @@
+<div class="dropdown" *ngIf="dropDownId">
+    <button (click)="toggle()" class="dropbtn">{{dropDownTitle.name}}</button>
+    <div [id]="dropDownId" class="dropdown-content">
+        <div *ngFor="let option of dropDownOptions" class="option-container">
+            <a class=" dropdown-option " *ngIf="option.visible" (click)="onClick($event, option) ">
+                    {{option.name}}
+                   
+                </a>
+            <i *ngIf="option.visible" class="material-icons clear-selected" (click)="removeSelected($event, option)">clear</i>
+        </div>
+    </div>
+</div>

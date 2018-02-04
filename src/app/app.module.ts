@@ -23,6 +23,10 @@ import { RelatedVideoCardComponent } from './related-video-card/related-video-ca
 import { VideoViewComponent } from './video/video-view/video-view.component';
 import { FilterComponent } from './filter/filter.component';
 import { ShowMoreItemsComponent } from './show-more-items/show-more-items.component';
+import {MdProgressBarModule} from '../../node_modules/@angular2-material/progress-bar/progress-bar';
+import { SearchService } from './services/search.service';
+import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,13 +42,16 @@ import { ShowMoreItemsComponent } from './show-more-items/show-more-items.compon
     VideoViewComponent,
     FilterComponent,
     ShowMoreItemsComponent,
+    DropdownFilterComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MomentModule
+    MomentModule,
+    MdProgressBarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     HttpService,
@@ -52,7 +59,8 @@ import { ShowMoreItemsComponent } from './show-more-items/show-more-items.compon
     YoutubeService,
     VideoService,
     LoggerService,
-    ChannelService
+    ChannelService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

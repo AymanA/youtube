@@ -12,14 +12,23 @@ export class YoutubeService {
   constructor(private httpService: HttpService,
     private cfg: Config, ) { }
 
-  getQueryResult(query: any) {
+  getQueryResult(query: string, filter?: string) {
     query = query ? query : '';
-    return this.httpService.get(`search/?q=${query}&part=snippet&maxResults=${this.cfg.resultLimit}`)
+    let queryParams = `search/?q=${query}&part=snippet&maxResults=${this.cfg.resultLimit}`;
+    if (filter) {
+      queryParams += filter;
+    }
+    return this.httpService.get(queryParams)
     .map(response => response.json());
   }
 
-  getMoreItems(query: string, nextPageToken: string) {
-    return this.httpService.get(`search/?q=${query}&pageToken=${nextPageToken}&part=snippet&maxResults=${this.cfg.resultLimit}`)
+  getMoreItems(query: string, nextPageToken: string, filter?: string) {
+    query = query ? query : '';
+    let queryParams = `search/?q=${query}&pageToken=${nextPageToken}&part=snippet&maxResults=${this.cfg.resultLimit}`;
+    if (filter) {
+      queryParams += filter;
+    }
+    return this.httpService.get(queryParams)
     .map(response => response.json());
 
   }
