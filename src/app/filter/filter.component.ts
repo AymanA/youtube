@@ -1,36 +1,51 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { LoggerService } from '../services/logger.service';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  styleUrls: ['./filter.component.scss'],
+  animations: [
+    trigger('filterToggle', [
+      state('show', style({
+        display: 'inline-flex',
+        height: '350px',
+      })),
+      state('hide', style({
+        display: 'none',
+        height: '0',
+      })),
+      transition('show <=> hide', animate('200ms linear')),
+    ]),
+
+   ]
 })
 export class FilterComponent implements OnInit {
 
   // @TODO make constant file for all Enums
   typeFilters = [
-    {value: 'all', name: 'All', visible: true, mobile: true},
-    {value: 'video', name: 'Video', visible: true, mobile: false},
-    {value: 'channel', name: 'Channel', visible: true, mobile: true},
-    {value: 'playlist', name: 'Playlist', visible: true, mobile: true}
+    {value: 'all', name: 'All', visible: true, mobile: true, other: false},
+    {value: 'video', name: 'Video', visible: true, mobile: false, other: true},
+    {value: 'channel', name: 'Channel', visible: true, mobile: true, other: true},
+    {value: 'playlist', name: 'Playlist', visible: true, mobile: true, other: true}
     ];
 
 
   uploadDateFilters = [
-    {value: 'any', name: 'Any time', visible: true, mobile: true},
-    {value: 'hour', name: 'Last hour', visible: true, mobile: false},
-    {value: 'today', name: 'Today', visible: true, mobile: true},
-    {value: 'week', name: 'This week', visible: true, mobile: true},
-    {value: 'month', name: 'This month', visible: true, mobile: true}
+    {value: 'any', name: 'Any time', visible: true, mobile: true, other: false},
+    {value: 'hour', name: 'Last hour', visible: true, mobile: false, other: true},
+    {value: 'today', name: 'Today', visible: true, mobile: true, other: true},
+    {value: 'week', name: 'This week', visible: true, mobile: true, other: true},
+    {value: 'month', name: 'This month', visible: true, mobile: true, other: true}
   ];
 
   orderFilters = [
-    {value: 'relevance', name: 'Relevance'},
-    {value: 'date', name: 'Upload date'},
-    {value: 'viewCount', name: 'View count'},
-    {value: 'rating', name: 'Rating'}
+    {value: 'relevance', name: 'Relevance', visible: true, mobile: false, other: true},
+    {value: 'date', name: 'Upload date', visible: true, mobile: false, other: true},
+    {value: 'viewCount', name: 'View count', visible: true, mobile: false, other: true},
+    {value: 'rating', name: 'Rating', visible: true, mobile: false, other: true}
   ];
 
   totalResults;
@@ -40,8 +55,7 @@ export class FilterComponent implements OnInit {
   selectedTypeFilter;
   selectedUploadTimeFilter;
   selectedOrderFilter;
-  // showFiltersGroup = false;
-  showFiltersGroup = true;
+  showFiltersGroup = 'show';
 
   constructor(private logger: LoggerService, private searchService: SearchService) { }
 
@@ -56,9 +70,10 @@ export class FilterComponent implements OnInit {
   }
 
   toggleFiltersGroupVisibilty() {
-    this.showFiltersGroup = !this.showFiltersGroup;
+    this.showFiltersGroup = this.showFiltersGroup === 'show' ? 'hide' : 'show';
     console.log('hide', this.showFiltersGroup);
   }
+
   // @TODO Implement filters feature
   ResultByfilters() {}
 
@@ -67,10 +82,14 @@ export class FilterComponent implements OnInit {
     this.logger.log('FilterComponent', 'filterResultsByType', type);
   }
 
-  filterResultsByDate(type) {
-    this.selectedUploadTimeFilter = type;
-    this.logger.log('FilterComponent', 'filterResultsByDate', type);
+  filterResultsByDate(uploadTime) {
+    this.selectedUploadTimeFilter = uploadTime;
+    this.logger.log('FilterComponent', 'filterResultsByDate', uploadTime);
   }
 
+  filterResultsByOrder(order) {
+    this.selectedOrderFilter = order;
+    this.logger.log('FilterComponent', 'filterResultsByOrder', order);
+  }
 
 }

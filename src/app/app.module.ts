@@ -26,6 +26,7 @@ import { ShowMoreItemsComponent } from './show-more-items/show-more-items.compon
 import {MdProgressBarModule} from '../../node_modules/@angular2-material/progress-bar/progress-bar';
 import { SearchService } from './services/search.service';
 import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.compo
     AppRoutingModule,
     MomentModule,
     MdProgressBarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     HttpService,

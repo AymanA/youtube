@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'app-dropdown-filter',
@@ -12,11 +13,10 @@ export class DropdownFilterComponent implements OnInit {
   @Output() clicked: EventEmitter<any> = new EventEmitter<any>();
   deviceType;
 
-  constructor() { }
+  constructor(private logger: LoggerService) { }
 
   ngOnInit() {
     this.getDeviceType();
-    this.prepareList();
   }
 
   toggle() {
@@ -42,21 +42,25 @@ export class DropdownFilterComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.getDeviceType();
-    this.prepareList();
+
   }
 
   getDeviceType() {
     if (window.innerWidth < 768) {
       this.deviceType = 'mobile';
-    } else {
+    } else if (window.innerWidth >= 768 ) {
       this.deviceType = 'other';
     }
+    this.prepareList();
   }
 
   prepareList() {
-    this.dropDownOptions.map(type => {
-      if ( this.deviceType === 'mobile' && !type.mobile) {
-        type.visible = false;
+    this.dropDownOptions.map(option => {
+      this.logger.log('foreachoption', option, this.deviceType);
+      if ( this.deviceType === 'mobile') {
+        option.visible = !option.mobile ? false : true;
+      } else if ( this.deviceType  === 'other') {
+        option.visible = !option.other ? false : true;
       }
     });
   }
