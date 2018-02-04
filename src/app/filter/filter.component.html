@@ -25,14 +25,14 @@
             <div class="filter-title">
                 UPLOAD DATE
             </div>
-            <app-dropdown-filter [dropDownId]="'time-filter'" [dropDownTitle]="UploadTimeFilterTitle" [dropDownOptions]="uploadDateFilters" (clicked)="filterResultsByDate($event)" [queryParamName]="'time'"></app-dropdown-filter>
+            <app-dropdown-filter (clicked)="toggleFiltersGroupVisibilty()" [dropDownId]="'time-filter'" [dropDownTitle]="UploadTimeFilterTitle" [dropDownOptions]="uploadDateFilters" (clicked)="filterResultsByDate($event)" [queryParamName]="'time'"></app-dropdown-filter>
 
         </div>
         <div class="type-filter">
             <div class="filter-title">
                 TYPE
             </div>
-            <app-dropdown-filter [dropDownId]="'type-filter'" [dropDownTitle]="typeFilterTitle" [dropDownOptions]="typeFilters" (clicked)="filterResultsByType($event)" [queryParamName]="'type'">
+            <app-dropdown-filter (clicked)="toggleFiltersGroupVisibilty()" [dropDownId]="'type-filter'" [dropDownTitle]="typeFilterTitle" [dropDownOptions]="typeFilters" (clicked)="filterResultsByType($event)" [queryParamName]="'type'">
             </app-dropdown-filter>
 
         </div>
@@ -41,7 +41,7 @@
             <div class="filter-title">
                 SORT BY
             </div>
-            <app-dropdown-filter [dropDownId]="'order-filter'" [dropDownTitle]="OrderFilterTitle" [dropDownOptions]="orderFilters" (clicked)="filterResultsByOrder($event)" [queryParamName]="'order'">
+            <app-dropdown-filter (clicked)="toggleFiltersGroupVisibilty()" [dropDownId]="'order-filter'" [dropDownTitle]="OrderFilterTitle" [dropDownOptions]="orderFilters" (clicked)="filterResultsByOrder($event)" [queryParamName]="'order'" [defaultValue]="'relevance'">
             </app-dropdown-filter>
         </div>
     </div>

@@ -17,7 +17,7 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
         display: 'none',
         height: '0',
       })),
-      transition('show <=> hide', animate('200ms linear')),
+      transition('show <=> hide', animate('400ms linear')),
     ]),
 
    ]
@@ -64,6 +64,7 @@ export class FilterComponent implements OnInit {
       this.formatTotalResult(value);
     });
   }
+
   formatTotalResult(totalResult: number) {
     this.logger.log('FilterComponent', 'formatTotalResult', totalResult);
     this.totalResults = totalResult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');

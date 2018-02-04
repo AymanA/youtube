@@ -13,7 +13,8 @@ export class DropdownFilterComponent implements OnInit {
   @Input() dropDownTitle;
   @Input() dropDownId;
   @Input() queryParamName;
-  // @Output() clicked: EventEmitter<any> = new EventEmitter<any>();
+  @Input () defaultValue;
+  @Output() clicked: EventEmitter<any> = new EventEmitter<any>();
   deviceType;
   filterParamsObjects: FilterObject[];
 
@@ -30,6 +31,7 @@ export class DropdownFilterComponent implements OnInit {
   }
 
   onClick(event, selectedOption) {
+    this.clicked.emit();
     const filterObject: FilterObject = {queryParamName: this.queryParamName,
        filterValue: selectedOption.value};
 
