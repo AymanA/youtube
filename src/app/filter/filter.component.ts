@@ -74,22 +74,5 @@ export class FilterComponent implements OnInit {
     console.log('hide', this.showFiltersGroup);
   }
 
-  // @TODO Implement filters feature
-  ResultByfilters() {}
-
-  filterResultsByType(type) {
-    this.selectedTypeFilter = type;
-    this.logger.log('FilterComponent', 'filterResultsByType', type);
-  }
-
-  filterResultsByDate(uploadTime) {
-    this.selectedUploadTimeFilter = uploadTime;
-    this.logger.log('FilterComponent', 'filterResultsByDate', uploadTime);
-  }
-
-  filterResultsByOrder(order) {
-    this.selectedOrderFilter = order;
-    this.logger.log('FilterComponent', 'filterResultsByOrder', order);
-  }
 
 }

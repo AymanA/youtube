@@ -13,6 +13,7 @@ import {
   ActivatedRoute
 } from '@angular/router';
 import { SearchService } from '../services/search.service';
+import { FilterObject } from '../common/models/custom-models/filter-object';
 
 @Component({
   selector: 'app-search-result',
@@ -20,13 +21,13 @@ import { SearchService } from '../services/search.service';
   styleUrls: ['./search-result.component.scss']
 })
 export class SearchResultComponent implements OnInit {
-
   searchQuery: string;
   resultList: any[];
   nextPageToken: string;
   loadingMoreData = false;
   scrolled = false;
   totalResult;
+  filters: FilterObject[];
 
   constructor(private youtubeService: YoutubeService, private logger: LoggerService,
     private route: ActivatedRoute, private searchService: SearchService) {}
@@ -37,9 +38,25 @@ export class SearchResultComponent implements OnInit {
         this.logger.log('SearchResultComponent', 'init', params);
         this.getQueryResult(this.searchQuery);
       });
+
+    this.searchService.filterParameters.subscribe( filters => {
+      this.filters = filters;
+      this.prepareQueryWithFilters(this.filters);
+    });
   }
-  getQueryResult(query: string) {
-    this.youtubeService.getQueryResult(query)
+
+  prepareQueryWithFilters(filters: Array<FilterObject>) {
+    let filterString = '';
+    filters.forEach((element: FilterObject) => {
+      filterString += `&${element.queryParamName}=${element.filterValue}` ;
+    });
+    this.logger.log('SearchResultComponent', 'prepareQueryWithFilters', filters);
+    this.searchService.filterString.next(filterString);
+    this.getQueryResult(this.searchQuery, filterString);
+  }
+
+  getQueryResult(query: string, filterQuery?: string) {
+    this.youtubeService.getQueryResult(query, filterQuery)
       .subscribe(res => {
         this.logger.log('SearchResultComponent', 'getQueryResult', res);
         this.resultList = res.items;
@@ -51,8 +68,9 @@ export class SearchResultComponent implements OnInit {
   loadMoreItems() {
     this.loadingMoreData = true;
     this.scrolled = true;
-    this.youtubeService.getMoreItems(this.searchQuery, this.nextPageToken)
-    .debounceTime(4000)
+    const filterString: string = this.searchService.filterString.getValue();
+    this.youtubeService.getMoreItems(this.searchQuery, this.nextPageToken, filterString)
+    .debounceTime(2000)
     .distinctUntilChanged()
     .subscribe(res => {
         this.logger.log('SearchResultComponent', 'loadMoreItems', res);

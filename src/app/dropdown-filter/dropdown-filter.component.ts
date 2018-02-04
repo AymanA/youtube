@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { LoggerService } from '../services/logger.service';
+import { SearchService } from '../services/search.service';
+import { FilterObject } from '../common/models/custom-models/filter-object';
 
 @Component({
   selector: 'app-dropdown-filter',
@@ -10,13 +12,17 @@ export class DropdownFilterComponent implements OnInit {
   @Input() dropDownOptions;
   @Input() dropDownTitle;
   @Input() dropDownId;
-  @Output() clicked: EventEmitter<any> = new EventEmitter<any>();
+  @Input() queryParamName;
+  // @Output() clicked: EventEmitter<any> = new EventEmitter<any>();
   deviceType;
+  filterParamsObjects: FilterObject[];
 
-  constructor(private logger: LoggerService) { }
+
+  constructor(private logger: LoggerService, private searchService: SearchService) { }
 
   ngOnInit() {
     this.getDeviceType();
+    this.searchService.filterParameters.subscribe( filters => this.filterParamsObjects = filters);
   }
 
   toggle() {
@@ -24,14 +30,17 @@ export class DropdownFilterComponent implements OnInit {
   }
 
   onClick(event, selectedOption) {
-    this.clicked.emit(selectedOption);
+    const filterObject: FilterObject = {queryParamName: this.queryParamName,
+       filterValue: selectedOption.value};
+
+    this.filterParamsObjects.push(filterObject);
+    this.searchService.filterParameters.next(this.filterParamsObjects);
+
     this.dropDownTitle = selectedOption;
-    this.logger.log('clickevent', event);
 
     this.handleOptionSelection(event);
 
     if (!event.target.matches('.dropbtn')) {
-
       const dropdowns = document.getElementsByClassName('dropdown-content');
       let i;
       for (i = 0; i < dropdowns.length; i++) {
@@ -69,6 +78,10 @@ export class DropdownFilterComponent implements OnInit {
 
   removeSelected(event, option) {
     this.resetSelectedOptions(event);
+    this.filterParamsObjects = this.filterParamsObjects.filter(element => {
+      return element.filterValue !== option.value;
+    });
+    this.searchService.filterParameters.next(this.filterParamsObjects);
   }
 
   @HostListener('window:resize', ['$event'])
