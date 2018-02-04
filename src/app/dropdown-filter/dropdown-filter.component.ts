@@ -1,8 +1,21 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
-import { LoggerService } from '../services/logger.service';
-import { SearchService } from '../services/search.service';
-import { FilterObject } from '../common/models/custom-models/filter-object';
-
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener
+} from '@angular/core';
+import {
+  LoggerService
+} from '../services/logger.service';
+import {
+  SearchService
+} from '../services/search.service';
+import {
+  FilterObject
+} from '../common/models/custom-models/filter-object';
+import { DateFormatPipe } from 'angular2-moment';
 @Component({
   selector: 'app-dropdown-filter',
   templateUrl: './dropdown-filter.component.html',
@@ -13,16 +26,17 @@ export class DropdownFilterComponent implements OnInit {
   @Input() dropDownTitle;
   @Input() dropDownId;
   @Input() queryParamName;
-  // @Output() clicked: EventEmitter<any> = new EventEmitter<any>();
+  @Input() defaultValue;
+  @Output() clicked: EventEmitter < any > = new EventEmitter < any > ();
   deviceType;
   filterParamsObjects: FilterObject[];
 
 
-  constructor(private logger: LoggerService, private searchService: SearchService) { }
+  constructor(private logger: LoggerService, private searchService: SearchService) {}
 
   ngOnInit() {
     this.getDeviceType();
-    this.searchService.filterParameters.subscribe( filters => this.filterParamsObjects = filters);
+    this.searchService.filterParameters.subscribe(filters => this.filterParamsObjects = filters);
   }
 
   toggle() {
@@ -30,14 +44,17 @@ export class DropdownFilterComponent implements OnInit {
   }
 
   onClick(event, selectedOption) {
-    const filterObject: FilterObject = {queryParamName: this.queryParamName,
-       filterValue: selectedOption.value};
+    this.clicked.emit();
+    const filterObject: FilterObject = {queryParamName: this.queryParamName, filterValue: ''};
+    if (this.queryParamName === 'publishedAfter') {
+      filterObject.filterValue =  this.getRFCTimeFormat(selectedOption.value);
+    } else {
+      filterObject.filterValue = selectedOption.value;
+    }
 
-    this.filterParamsObjects.push(filterObject);
-    this.searchService.filterParameters.next(this.filterParamsObjects);
+    this.updateFilterObject(filterObject);
 
     this.dropDownTitle = selectedOption;
-
     this.handleOptionSelection(event);
 
     if (!event.target.matches('.dropbtn')) {
@@ -50,6 +67,18 @@ export class DropdownFilterComponent implements OnInit {
         }
       }
     }
+  }
+
+  updateFilterObject(filterObject: FilterObject) {
+    const indexOfObject = this.filterParamsObjects.
+    findIndex(item => item.queryParamName === filterObject.queryParamName);
+    console.log('indexofobject', indexOfObject);
+    if (indexOfObject === -1 ) {
+      this.filterParamsObjects.push(filterObject);
+    } else {
+      this.filterParamsObjects[indexOfObject] = filterObject;
+    }
+    this.searchService.filterParameters.next(this.filterParamsObjects);
   }
 
   handleOptionSelection(event) {
@@ -92,7 +121,7 @@ export class DropdownFilterComponent implements OnInit {
   getDeviceType() {
     if (window.innerWidth < 768) {
       this.deviceType = 'mobile';
-    } else if (window.innerWidth >= 768 ) {
+    } else if (window.innerWidth >= 768) {
       this.deviceType = 'other';
     }
     this.prepareList();
@@ -100,13 +129,40 @@ export class DropdownFilterComponent implements OnInit {
 
   prepareList() {
     this.dropDownOptions.map(option => {
-      if ( this.deviceType === 'mobile') {
+      if (this.deviceType === 'mobile') {
         option.visible = !option.mobile ? false : true;
-      } else if ( this.deviceType  === 'other') {
+      } else if (this.deviceType === 'other') {
         option.visible = !option.other ? false : true;
       }
     });
   }
 
+  getRFCTimeFormat(selectedDateFilter: string) {
+    const date = new Date();
+    let rfcTime = '';
+
+    switch (selectedDateFilter) {
+      case 'hour':
+        const hourago = new Date(date.getTime() - (1000 * 60 * 60));
+        rfcTime = hourago.toISOString();
+        break;
+      case 'today':
+        const today = new Date(`${(new DateFormatPipe()).transform(date, 'YYYY-MM-DD')}`);
+        rfcTime = today.toISOString();
+        break;
+      case 'week':
+        date.setTime(date.getTime() - (7 * 24 * 60 * 60 * 1000));
+        rfcTime = date.toISOString();
+        break;
+      case 'month':
+        date.setTime(date.getTime() - (30 * 24 * 60 * 60 * 1000));
+        rfcTime = date.toISOString();
+        break;
+
+      default:
+        break;
+    }
+    return rfcTime;
+  }
 
 }

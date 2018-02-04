@@ -40,6 +40,7 @@ export class SearchResultComponent implements OnInit {
       });
 
     this.searchService.filterParameters.subscribe( filters => {
+      console.log('vipissuefilters', filters);
       this.filters = filters;
       this.prepareQueryWithFilters(this.filters);
     });
