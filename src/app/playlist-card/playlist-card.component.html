@@ -1,6 +1,6 @@
 <!-- @TODO make searchQuery highlited -->
 <div class="playlist-container" *ngIf="isplaylistContentAvailable">
-    <a [routerLink]="['/playlist', playlistId]">
+    <a [routerLink]="['/video', videoId]">
         <div class="thumbnail">
 
             <!-- <img srcset="{{playlistSnippet.thumbnails.default?.url}} 320w,
@@ -37,6 +37,9 @@
             </div>
             <div class="playlist-description">
                 {{playlistSnippet.description}}
+            </div>
+            <div class="view-all-playlist">
+                VIEW FULL PLAYLIST ({{playlistItemsCount}} VIDEOS)
             </div>
         </div>
     </a>

@@ -6,8 +6,12 @@ export class PlaylistService {
 
   constructor(private httpService: HttpService) { }
 
-  getPlaylistItemsCountById(id: string) {
-    return this.httpService.get(`playlists?id=${id}&part=contentDetails`)
+  getPlaylistItemsCountById(playlistId: string) {
+    return this.httpService.get(`playlists?id=${playlistId}&part=contentDetails`)
+      .map(response => response.json());
+  }
+  getPlaylistItemsById(playlistId: string) {
+    return this.httpService.get(`playlistItems?playlistId=${playlistId}&part=contentDetails`)
       .map(response => response.json());
   }
 

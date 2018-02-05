@@ -49,6 +49,7 @@ export class VideoCardComponent implements OnInit, OnChanges {
     });
   }
 
+  // @TODO handle videos with wrong durations
   getVideoDuration(videoDuration: string) {
     const pattern = /PT((([0-9]+)H)?([0-9]+)M)?(([0-9]+)S)?/;
     const result = pattern.exec(videoDuration);

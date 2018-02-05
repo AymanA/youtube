@@ -19,7 +19,7 @@
                 margin: -10.6% 0;
             }
             .playlist-overlay {
-                width: 41%;
+                width: 40%;
                 position: absolute;
                 height: 100%;
                 background-color: rgba(0, 0, 0, 0.5);
@@ -58,34 +58,39 @@
                 }
             }
             .playlist-description,
-            .playlist-publish-at {
+            .playlist-publish-at,
+            .view-all-playlist {
                 display: none;
             }
         }
     }
     @include md {
         width: 100%;
-        height: 100%;
+        height: 90%;
         margin: 5px 0;
         .thumbnail {
             width: 34%;
             display: inline-block;
             overflow: hidden;
+            position: relative;
             img {
                 width: 100%;
                 margin: -10.6% 0;
             }
-            .playlist-duration {
-                text-align: right;
-                margin-right: 4px;
-                color: $duration-color;
-                border-radius: 3px;
-                padding: 0 3px;
-                font-weight: bold;
-                background-color: $duration-background-color;
-                position: relative;
-                margin: -8% 2%;
-                float: right;
+            .playlist-overlay {
+                width: 40%;
+                position: absolute;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                text-align: center;
+                top: 0;
+                right: 0;
+                color: $white-color;
+                padding-top: 23%;
+                .playlist-items-count {
+                    font-weight: 600;
+                    font-size: smaller;
+                }
             }
         }
         .playlist-details {
@@ -101,23 +106,26 @@
             .playlist-info {
                 display: inline-flex;
                 width: 85%;
-                margin-bottom: 19px;
+                margin-bottom: 15px;
                 font-weight: 300;
                 .playlist-channel-title,
                 .playlist-view-count,
                 .playlist-publish-at {
-                    opacity: .6;
-                    // display: inline-block;
                     width: auto;
                 }
             }
             .playlist-description {
-                opacity: .7;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
+                font-weight: lighter;
+                font-size: medium;
+                margin-bottom: 15px;
+            }
+            .view-all-playlist {
+                font-size: medium;
                 font-weight: 400;
             }
         }

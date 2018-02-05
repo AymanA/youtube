@@ -14,9 +14,7 @@ export class YoutubeService {
 
   getQueryResult(query: string, filter?: string) {
     query = query ? query : '';
-    // let queryParams = `search/?q=${query}&part=snippet&maxResults=${this.cfg.resultLimit}`;
-    let queryParams = `search/?q=${query}&type=playlist&part=snippet&maxResults=${this.cfg.resultLimit}`;
-
+    let queryParams = `search/?q=${query}&part=snippet&maxResults=${this.cfg.resultLimit}`;
     if (filter) {
       queryParams += filter;
     }

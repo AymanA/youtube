@@ -13,6 +13,7 @@ export class PlaylistCardComponent implements OnInit, OnChanges {
   isplaylistContentAvailable = false;
   playlistItemsCount;
   playlistSnippet;
+  videoId;
   constructor(private playlistService: PlaylistService, private logger: LoggerService) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class PlaylistCardComponent implements OnInit, OnChanges {
       this.playlistId = changes.playlistItem.currentValue.id.playlistId;
       this.playlistSnippet = changes.playlistItem.currentValue.snippet;
       this.getPlaylistContentDetails(this.playlistId);
+      this.getPlaylistVideoId(this.playlistId);
     }
   }
 
@@ -32,6 +34,13 @@ export class PlaylistCardComponent implements OnInit, OnChanges {
       this.logger.log('PlaylistCardComponent', 'getPlaylistDetails', data);
       this.playlistItemsCount = data.items[0].contentDetails.itemCount;
       this.isplaylistContentAvailable = true;
+    });
+  }
+  getPlaylistVideoId(playlistId: string) {
+    this.playlistService.getPlaylistItemsById(playlistId).subscribe( data => {
+      this.logger.log('PlaylistCardComponent', 'getPlaylistfullDetails', data);
+      this.videoId = data.items[0].contentDetails.videoId;
+      // this.isplaylistContentAvailable = true;
     });
   }
 }
