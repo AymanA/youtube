@@ -10,8 +10,8 @@ import {
   LoggerService
 } from '../services/logger.service';
 import {
-  SearchDataService
-} from '../services/search-data.service';
+  DataService
+} from '../services/data.service';
 import {
   FilterObject
 } from '../common/models/custom-models/filter-object';
@@ -34,11 +34,11 @@ export class DropdownFilterComponent implements OnInit {
   filterParamsObjects: FilterObject[];
 
 
-  constructor(private logger: LoggerService, private searchDataService: SearchDataService) {}
+  constructor(private logger: LoggerService, private dataService: DataService) {}
 
   ngOnInit() {
     this.getDeviceType();
-    this.searchDataService.filterParameters.subscribe(filters => this.filterParamsObjects = filters);
+    this.dataService.filterParameters.subscribe(filters => this.filterParamsObjects = filters);
   }
 
   toggle() {
@@ -87,7 +87,7 @@ export class DropdownFilterComponent implements OnInit {
         this.filterParamsObjects[indexOfObject] = filterObject;
       }
     }
-    this.searchDataService.filterParameters.next(this.filterParamsObjects);
+    this.dataService.filterParameters.next(this.filterParamsObjects);
   }
 
   handleOptionSelection(event) {
@@ -120,7 +120,7 @@ export class DropdownFilterComponent implements OnInit {
     this.filterParamsObjects = this.filterParamsObjects.filter(element => {
       return element.filterValue !== option.value;
     });
-    this.searchDataService.filterParameters.next(this.filterParamsObjects);
+    this.dataService.filterParameters.next(this.filterParamsObjects);
   }
 
   @HostListener('window:resize', ['$event'])

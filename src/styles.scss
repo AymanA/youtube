@@ -13,5 +13,7 @@ body {
     // @media screen and (max-width: $small-screen) {
     @include xs {
         background-color: $white-color;
+        // height: 100%;
+        // width: 100%;
     }
 }

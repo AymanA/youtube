@@ -24,10 +24,10 @@ import { VideoViewComponent } from './video/video-view/video-view.component';
 import { FilterComponent } from './filter/filter.component';
 import { ShowMoreItemsComponent } from './show-more-items/show-more-items.component';
 import {MdProgressBarModule} from '../../node_modules/@angular2-material/progress-bar/progress-bar';
-import { SearchDataService } from './services/search-data.service';
+import { DataService } from './services/data.service';
 import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PlaylistCardComponent } from './playlist-card/playlist-card.component';
+import { PlaylistCardComponent } from './result-list/playlist-card/playlist-card.component';
 import { PlaylistService } from './services/playlist.service';
 
 @NgModule({
@@ -63,7 +63,7 @@ import { PlaylistService } from './services/playlist.service';
     VideoService,
     LoggerService,
     ChannelService,
-    SearchDataService,
+    DataService,
     PlaylistService
   ],
   bootstrap: [AppComponent]

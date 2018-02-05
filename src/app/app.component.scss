@@ -1,5 +1,9 @@
 @import 'variables';
 .content {
+    @include xs {
+        overflow: auto;
+        height: 100%;
+    }
     @include md {
         padding: 0 16%;
     }

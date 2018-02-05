@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
-import { LoggerService } from '../services/logger.service';
-import { PlaylistService } from '../services/playlist.service';
+import { LoggerService } from '../../services/logger.service';
+import { PlaylistService } from '../../services/playlist.service';
 
 @Component({
   selector: 'app-playlist-card',
@@ -9,7 +9,7 @@ import { PlaylistService } from '../services/playlist.service';
 })
 export class PlaylistCardComponent implements OnInit, OnChanges {
   @Input() playlistItem;
-  playlistId;
+  @Input() playlistId;
   isplaylistContentAvailable = false;
   playlistItemsCount;
   playlistSnippet;
@@ -20,10 +20,15 @@ export class PlaylistCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.playlistItem.currentValue) {
-      this.playlistId = changes.playlistItem.currentValue.id.playlistId;
-      this.playlistSnippet = changes.playlistItem.currentValue.snippet;
-      this.getPlaylistContentDetails(this.playlistId);
+    const playlistCurrentValue = changes.playlistItem.currentValue;
+    if (playlistCurrentValue) {
+      this.playlistSnippet = playlistCurrentValue.snippet;
+      if (playlistCurrentValue.contentDetails) {
+        this.playlistItemsCount = playlistCurrentValue.contentDetails.itemCount;
+        this.isplaylistContentAvailable = true;
+      } else {
+        this.getPlaylistContentDetails(this.playlistId);
+      }
       this.getPlaylistVideoId(this.playlistId);
     }
   }

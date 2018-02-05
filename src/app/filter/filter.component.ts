@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { SearchDataService } from '../services/search-data.service';
+import { DataService } from '../services/data.service';
 import { LoggerService } from '../services/logger.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
@@ -57,10 +57,10 @@ export class FilterComponent implements OnInit {
   selectedOrderFilter;
   showFiltersGroup = 'hide';
 
-  constructor(private logger: LoggerService, private searchDataService: SearchDataService) { }
+  constructor(private logger: LoggerService, private dataService: DataService) { }
 
   ngOnInit() {
-    this.searchDataService.totalResult.subscribe(value => {
+    this.dataService.totalResult.subscribe(value => {
       this.formatTotalResult(value);
     });
   }

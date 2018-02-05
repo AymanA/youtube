@@ -3,7 +3,7 @@ import { LoggerService } from '../services/logger.service';
 import { Router, ActivatedRoute, NavigationStart, Event, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { HttpService } from '../services/http.service';
-import { SearchDataService } from '../services/search-data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -14,18 +14,24 @@ export class HeaderComponent implements OnInit {
   searchQuery = '';
   currentUrl;
   spinner = false;
+  channelTitle;
   constructor(private logger: LoggerService,  private router: Router,
     private route: ActivatedRoute, private httpService: HttpService,
-    private searchDataService: SearchDataService) { }
+    private dataService: DataService) { }
 
   ngOnInit() {
-    this.searchDataService.searchQuery.subscribe(value => this.searchQuery = value);
+    this.dataService.searchQuery.subscribe(value => this.searchQuery = value);
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd ) {
         this.currentUrl = event.url;
         this.logger.log('HeaderComponent', 'init', this.currentUrl, event);
         this.getCurrentPath();
       }
+    });
+
+    this.dataService.channelTitle.subscribe( title => {
+      this.channelTitle = title;
+      this.logger.log('HeaderComponent', 'channelTitle', title);
     });
 
     this.route.queryParams.subscribe(params => {
@@ -39,7 +45,7 @@ export class HeaderComponent implements OnInit {
 
   }
   searchClick() {
-    this.searchDataService.searchQuery.next(this.searchQuery);
+    this.dataService.searchQuery.next(this.searchQuery);
     this.router.navigate(['search'], { queryParams: { query: this.searchQuery } });
   }
 

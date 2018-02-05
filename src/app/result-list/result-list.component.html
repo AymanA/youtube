@@ -8,6 +8,6 @@
     </div>
 
     <div *ngIf="result.id.kind === 'youtube#playlist'">
-        <app-playlist-card [playlistItem]="result"></app-playlist-card>
+        <app-playlist-card [playlistItem]="result" [playlistId]="result.id.playlistId"></app-playlist-card>
     </div>
 </div>

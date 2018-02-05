@@ -12,7 +12,7 @@ import {
 import {
   ActivatedRoute
 } from '@angular/router';
-import { SearchDataService } from '../services/search-data.service';
+import { DataService } from '../services/data.service';
 import { FilterObject } from '../common/models/custom-models/filter-object';
 
 @Component({
@@ -30,7 +30,7 @@ export class SearchResultComponent implements OnInit {
   filters: FilterObject[];
 
   constructor(private youtubeService: YoutubeService, private logger: LoggerService,
-    private route: ActivatedRoute, private searchDataService: SearchDataService) {}
+    private route: ActivatedRoute, private dataService: DataService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -39,7 +39,7 @@ export class SearchResultComponent implements OnInit {
         this.getQueryResult(this.searchQuery);
       });
 
-    this.searchDataService.filterParameters.subscribe( filters => {
+    this.dataService.filterParameters.subscribe( filters => {
       console.log('vipissuefilters', filters);
       this.filters = filters;
       this.prepareQueryWithFilters(this.filters);
@@ -52,7 +52,7 @@ export class SearchResultComponent implements OnInit {
       filterString += `&${element.queryParamName}=${element.filterValue}` ;
     });
     this.logger.log('SearchResultComponent', 'prepareQueryWithFilters', filters);
-    this.searchDataService.filterString.next(filterString);
+    this.dataService.filterString.next(filterString);
     this.getQueryResult(this.searchQuery, filterString);
   }
 
@@ -62,14 +62,14 @@ export class SearchResultComponent implements OnInit {
         this.logger.log('SearchResultComponent', 'getQueryResult', res);
         this.resultList = res.items;
         this.nextPageToken = res.nextPageToken;
-        this.searchDataService.totalResult.next(res.pageInfo.totalResults);
+        this.dataService.totalResult.next(res.pageInfo.totalResults);
       });
   }
 
   loadMoreItems() {
     this.loadingMoreData = true;
     this.scrolled = true;
-    const filterString: string = this.searchDataService.filterString.getValue();
+    const filterString: string = this.dataService.filterString.getValue();
     this.youtubeService.getMoreItems(this.searchQuery, this.nextPageToken, filterString)
     .debounceTime(2000)
     .distinctUntilChanged()
@@ -89,7 +89,7 @@ export class SearchResultComponent implements OnInit {
   onWindowScroll() {
     let bodyHeight = document.body.offsetHeight;
     if (document.documentElement.clientWidth >= 768) {
-      bodyHeight = bodyHeight + 65;
+      bodyHeight = bodyHeight + 55;
     }
     if (!this.scrolled && ((window.innerHeight + window.scrollY) === bodyHeight)) {
       this.loadMoreItems();

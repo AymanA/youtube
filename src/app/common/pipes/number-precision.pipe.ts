@@ -14,7 +14,7 @@ export class NumberPrecisionPipe implements PipeTransform {
     }
     number.toFixed(precision);
     if (number < minimum) {
-      return;
+      return number;
     }
     const powerOfTen = Math.floor(Math.log(Math.abs(number)) * Math.LOG10E);
     let result;
@@ -44,7 +44,6 @@ export class NumberPrecisionPipe implements PipeTransform {
         break;
 
     }
-
     return result;
   }
 
