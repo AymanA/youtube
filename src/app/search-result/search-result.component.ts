@@ -87,11 +87,7 @@ export class SearchResultComponent implements OnInit {
 // @TODO debounce the scroll event
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    let bodyHeight = document.body.offsetHeight;
-    if (document.documentElement.clientWidth >= 768) {
-      bodyHeight = bodyHeight + 55;
-    }
-    if (!this.scrolled && ((window.innerHeight + window.scrollY) === bodyHeight)) {
+    if (!this.scrolled && ((window.innerHeight + window.scrollY) >= document.body.offsetHeight)) {
       this.loadMoreItems();
     }
   }
