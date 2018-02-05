@@ -15,7 +15,9 @@ import {
 import {
   FilterObject
 } from '../common/models/custom-models/filter-object';
-import { DateFormatPipe } from 'angular2-moment';
+import {
+  DateFormatPipe
+} from 'angular2-moment';
 @Component({
   selector: 'app-dropdown-filter',
   templateUrl: './dropdown-filter.component.html',
@@ -45,9 +47,12 @@ export class DropdownFilterComponent implements OnInit {
 
   onClick(event, selectedOption) {
     this.clicked.emit();
-    const filterObject: FilterObject = {queryParamName: this.queryParamName, filterValue: ''};
+    const filterObject: FilterObject = {
+      queryParamName: this.queryParamName,
+      filterValue: ''
+    };
     if (this.queryParamName === 'publishedAfter') {
-      filterObject.filterValue =  this.getRFCTimeFormat(selectedOption.value);
+      filterObject.filterValue = this.getRFCTimeFormat(selectedOption.value);
     } else {
       filterObject.filterValue = selectedOption.value;
     }
@@ -70,13 +75,17 @@ export class DropdownFilterComponent implements OnInit {
   }
 
   updateFilterObject(filterObject: FilterObject) {
-    const indexOfObject = this.filterParamsObjects.
-    findIndex(item => item.queryParamName === filterObject.queryParamName);
-    console.log('indexofobject', indexOfObject);
-    if (indexOfObject === -1 ) {
-      this.filterParamsObjects.push(filterObject);
+    if (filterObject.filterValue === 'all' || filterObject.filterValue === 'any') {
+      this.resetCurrentFilter(filterObject);
     } else {
-      this.filterParamsObjects[indexOfObject] = filterObject;
+      const indexOfObject = this.filterParamsObjects.
+      findIndex(item => item.queryParamName === filterObject.queryParamName);
+      console.log('indexofobject', indexOfObject);
+      if (indexOfObject === -1) {
+        this.filterParamsObjects.push(filterObject);
+      } else {
+        this.filterParamsObjects[indexOfObject] = filterObject;
+      }
     }
     this.searchDataService.filterParameters.next(this.filterParamsObjects);
   }
@@ -161,9 +170,18 @@ export class DropdownFilterComponent implements OnInit {
         break;
 
       default:
+      rfcTime = 'any';
         break;
     }
     return rfcTime;
+  }
+
+  resetCurrentFilter(filterObject: FilterObject) {
+    const indexOfObject = this.filterParamsObjects.
+    findIndex(item => item.queryParamName === filterObject.queryParamName);
+    if (indexOfObject !== -1) {
+      this.filterParamsObjects.splice(indexOfObject);
+    }
   }
 
 }
