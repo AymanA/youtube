@@ -1,0 +1,43 @@
+<!-- @TODO make searchQuery highlited -->
+<div class="playlist-container" *ngIf="isplaylistContentAvailable">
+    <a [routerLink]="['/playlist', playlistId]">
+        <div class="thumbnail">
+
+            <!-- <img srcset="{{playlistSnippet.thumbnails.default?.url}} 320w,
+          {{playlistSnippet.thumbnails.medium ? playlistSnippet.thumbnails.medium.url : playlistSnippet.thumbnails.default.url}} 480w,
+          {{playlistSnippet.thumbnails.standard ? playlistSnippet.thumbnails.standard.url : playlistSnippet.thumbnails.default.url}} 800w" sizes="(max-width: 320px) 280px,
+           (max-width: 480px) 440px, 800px" [src]="playlistSnippet.thumbnails.high.url" alt=""> -->
+            <img [src]="playlistSnippet.thumbnails.high ? playlistSnippet.thumbnails.high.url : playlistSnippet.thumbnails.defaul.url" alt="">
+            <div class="playlist-overlay">
+
+                <div class="playlist-items-count">
+                    {{playlistItemsCount}}
+                </div>
+                <span class="playlist-play-icon">
+                    <i class="material-icons">playlist_play</i>
+                </span>
+            </div>
+
+        </div>
+        <div class="playlist-details">
+            <div class="playlist-title">
+                {{playlistSnippet.title}}
+            </div>
+
+            <div class="playlist-info">
+                <div class="playlist-channel-title">
+                    {{playlistSnippet.channelTitle}}
+                </div>
+                <!-- <div class="playlist-view-count">
+                    {{playlistStatistics.viewCount | numberPrecision }} views
+                </div> -->
+                <!-- <div class="playlist-publish-at">
+                    {{playlistSnippet.publishedAt | amTimeAgo}}
+                </div> -->
+            </div>
+            <div class="playlist-description">
+                {{playlistSnippet.description}}
+            </div>
+        </div>
+    </a>
+</div>

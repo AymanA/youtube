@@ -1,5 +1,5 @@
 @import 'variables';
-.video-container {
+.playlist-container {
     display: flex;
     a {
         color: $dark-font-color;
@@ -13,50 +13,52 @@
             width: 50%;
             display: inline-block;
             overflow: hidden;
+            position: relative;
             img {
                 width: 100%;
                 margin: -10.6% 0;
             }
-            .video-duration {
-                color: white;
-                text-align: right;
-                margin-right: 4px;
-                color: $duration-color;
-                border-radius: 3px;
-                padding: 0 3px;
-                font-weight: bold;
-                background-color: $duration-background-color;
-                position: relative;
-                margin: -10% 2%;
-                float: right;
-                font-size: x-small;
+            .playlist-overlay {
+                width: 41%;
+                position: absolute;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                text-align: center;
+                top: 0;
+                right: 0;
+                color: $white-color;
+                padding-top: 15%;
+                .playlist-items-count {
+                    font-weight: 600;
+                    font-size: smaller;
+                }
             }
         }
-        .video-details {
+        .playlist-details {
             height: 100%;
             width: 48%;
             float: right;
             font-size: smaller;
-            .video-title {
+            .playlist-title {
                 display: inline-block;
                 width: 100%;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
-                -webkit-line-clamp: 2;
+                -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
             }
-            .video-info {
-                .video-channel-title,
-                .video-view-count,
+            .playlist-info {
+                .playlist-channel-title,
+                .playlist-view-count,
                 {
                     opacity: .6;
                     display: inline-block;
                     width: 100%;
                 }
             }
-            .video-description,
-            .video-publish-at {
+            .playlist-description,
+            .playlist-publish-at {
                 display: none;
             }
         }
@@ -73,7 +75,7 @@
                 width: 100%;
                 margin: -10.6% 0;
             }
-            .video-duration {
+            .playlist-duration {
                 text-align: right;
                 margin-right: 4px;
                 color: $duration-color;
@@ -86,30 +88,30 @@
                 float: right;
             }
         }
-        .video-details {
+        .playlist-details {
             height: 100%;
             padding-top: 5px;
             width: 64%;
             float: right;
             font-size: large;
-            .video-title {
+            .playlist-title {
                 display: inline-block;
                 width: 100%;
             }
-            .video-info {
+            .playlist-info {
                 display: inline-flex;
                 width: 85%;
                 margin-bottom: 19px;
                 font-weight: 300;
-                .video-channel-title,
-                .video-view-count,
-                .video-publish-at {
+                .playlist-channel-title,
+                .playlist-view-count,
+                .playlist-publish-at {
                     opacity: .6;
                     // display: inline-block;
                     width: auto;
                 }
             }
-            .video-description {
+            .playlist-description {
                 opacity: .7;
                 overflow: hidden;
                 text-overflow: ellipsis;

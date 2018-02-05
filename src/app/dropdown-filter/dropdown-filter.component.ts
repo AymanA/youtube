@@ -10,8 +10,8 @@ import {
   LoggerService
 } from '../services/logger.service';
 import {
-  SearchService
-} from '../services/search.service';
+  SearchDataService
+} from '../services/search-data.service';
 import {
   FilterObject
 } from '../common/models/custom-models/filter-object';
@@ -32,11 +32,11 @@ export class DropdownFilterComponent implements OnInit {
   filterParamsObjects: FilterObject[];
 
 
-  constructor(private logger: LoggerService, private searchService: SearchService) {}
+  constructor(private logger: LoggerService, private searchDataService: SearchDataService) {}
 
   ngOnInit() {
     this.getDeviceType();
-    this.searchService.filterParameters.subscribe(filters => this.filterParamsObjects = filters);
+    this.searchDataService.filterParameters.subscribe(filters => this.filterParamsObjects = filters);
   }
 
   toggle() {
@@ -78,7 +78,7 @@ export class DropdownFilterComponent implements OnInit {
     } else {
       this.filterParamsObjects[indexOfObject] = filterObject;
     }
-    this.searchService.filterParameters.next(this.filterParamsObjects);
+    this.searchDataService.filterParameters.next(this.filterParamsObjects);
   }
 
   handleOptionSelection(event) {
@@ -106,11 +106,12 @@ export class DropdownFilterComponent implements OnInit {
   }
 
   removeSelected(event, option) {
+    this.clicked.emit();
     this.resetSelectedOptions(event);
     this.filterParamsObjects = this.filterParamsObjects.filter(element => {
       return element.filterValue !== option.value;
     });
-    this.searchService.filterParameters.next(this.filterParamsObjects);
+    this.searchDataService.filterParameters.next(this.filterParamsObjects);
   }
 
   @HostListener('window:resize', ['$event'])

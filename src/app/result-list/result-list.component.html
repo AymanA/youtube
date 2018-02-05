@@ -7,4 +7,7 @@
         <app-video-card [videoItem]="result"></app-video-card>
     </div>
 
+    <div *ngIf="result.id.kind === 'youtube#playlist'">
+        <app-playlist-card [playlistItem]="result"></app-playlist-card>
+    </div>
 </div>

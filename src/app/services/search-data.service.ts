@@ -5,7 +5,7 @@ import { FilterObject } from '../common/models/custom-models/filter-object';
 
 
 @Injectable()
-export class SearchService {
+export class SearchDataService {
   defaultFilter: FilterObject[] = [];
   searchQuery: BehaviorSubject<string> = new BehaviorSubject<string>('');
   totalResult: BehaviorSubject<number> = new BehaviorSubject<number>(0);
