@@ -1,0 +1,118 @@
+    @import 'variables';
+    .video-section {
+        display: flex;
+        flex-flow: column;
+        border-bottom: 1px solid $filter-border-color;
+        @include md {
+            margin-top: 65px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            padding-top: 30px;
+            height: 0;
+            overflow: hidden;
+            /deep/ iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        @include xs {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 3%;
+            .video-details {
+                border-top: 1px solid $dark-font-color;
+                padding: 3% 4%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 100%;
+                flex-wrap: wrap;
+                .title-wrapper {
+                    order: 1;
+                    display: flex;
+                    margin-bottom: 1%;
+                    .video-title {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                        width: 95%;
+                    }
+                    i {
+                        margin-top: -2%;
+                        margin-right: 5%;
+                    }
+                }
+                .channel-title {
+                    order: 2;
+                    opacity: .75;
+                    font-size: 14px;
+                    margin-right: 3%
+                }
+                .video-watchers {
+                    order: 3;
+                    opacity: .6;
+                    font-size: 14px;
+                }
+                .video-actions {
+                    order: 4;
+                    flex: 0 0 100%;
+                    color: $filter-color;
+                    display: flex;
+                    flex-wrap: row;
+                    display: flex;
+                    opacity: .8;
+                    // margin-top: 1%;
+                    padding-top: 3%;
+                    .right-actions {
+                        display: flex;
+                        flex-basis: 40%;
+                        .video-likes,
+                        .video-dislikes {
+                            display: flex;
+                            margin-right: 5%;
+                            span {
+                                font-size: 14px;
+                            }
+                            i {
+                                font-size: 16px;
+                                padding-top: 1%;
+                                padding-right: 12%;
+                            }
+                        }
+                    }
+                    .left-actions {
+                        display: flex;
+                        flex-basis: 54%;
+                        justify-content: flex-end;
+                        .flag-icon,
+                        .share-icon {
+                            flex-basis: 20%;
+                            i {
+                                font-size: 16px;
+                                padding-top: 1%;
+                                padding-left: 12%;
+                            }
+                        }
+                        .add-icon {
+                            flex-basis: 25%;
+                            i {
+                                font-size: 18px;
+                                padding-top: 0%;
+                                padding-left: 12%;
+                            }
+                        }
+                    }
+                }
+                .video-publish-date {
+                    display: none;
+                }
+            }
+        }
+    }

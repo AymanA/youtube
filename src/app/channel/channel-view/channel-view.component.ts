@@ -30,7 +30,6 @@ export class ChannelViewComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.channelId = params['id'];
       this.getChannelDetails(this.channelId);
-      // this.getChannelSectionData(this.channelId);
       this.getChannelPlaylists(this.channelId);
     });
   }
@@ -70,11 +69,6 @@ export class ChannelViewComponent implements OnInit {
       this.logger.log('ChannelViewComponent', 'getPlaylistItems', data);
       this.channelSectionVideos = data.items;
       this.isChannelPlaylistItemsAvailable = true;
-      // this.channelContent = data;
-      // this.channelSnippet = this.channelContent.items[0].snippet;
-      // this.channelStatistics = this.channelContent.items[0].statistics;
-      // this.isChannelContentAvailable = true;
-      // this.channelBrandingSettings = this.channelContent.items[0].brandingSettings;
     });
   }
 }

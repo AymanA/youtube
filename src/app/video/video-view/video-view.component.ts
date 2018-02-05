@@ -30,10 +30,6 @@ export class VideoViewComponent implements OnInit {
       this.logger.log('VideoViewComponent', 'getVideoDetails', res);
       this.videoDetails = res.items[0];
       this.isVideoDetailsAvailable = true;
-      // this.channelSnippet = this.channelContent.items[0].snippet;
-      // this.channelStatistics = this.channelContent.items[0].statistics;
-      // this.isChannelContentAvailable = true;
-      // this.channelBrandingSettings = this.channelContent.items[0].brandingSettings;
     });
   }
 

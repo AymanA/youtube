@@ -55,6 +55,8 @@ export class HeaderComponent implements OnInit {
     }
     const regExp = /^\/(.*?)(\?|\/)/;
     const routePath = regExp.exec(this.currentUrl);
-    return routePath ? routePath[1] : routePath;
+    const currentRoute = routePath ? routePath[1] : '';
+    this.dataService.currentRoute.next(currentRoute);
+    return currentRoute;
   }
 }

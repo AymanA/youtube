@@ -12,6 +12,7 @@ export class DataService {
   filterParameters: BehaviorSubject<FilterObject[]> = new BehaviorSubject([]);
   filterString: BehaviorSubject<string> = new BehaviorSubject('');
   channelTitle: BehaviorSubject<string> = new BehaviorSubject('');
+  currentRoute: BehaviorSubject<string> = new BehaviorSubject('');
   constructor(private logger: LoggerService) {
     this.defaultFilter.push({filterValue: 'relevance', queryParamName: 'order'});
     this.filterParameters.next(this.defaultFilter);
