@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class LoggerService {
   enabled = true;
-  // enabled = false;
   logs: string[] = []; // capture logs for testing
   noop = () => {};
   constructor() {

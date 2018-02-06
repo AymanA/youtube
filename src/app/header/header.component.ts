@@ -29,13 +29,16 @@ export class HeaderComponent implements OnInit {
       }
     });
 
+    this.searchQuery = this.dataService.searchQuery.getValue();
+
     this.dataService.channelTitle.subscribe( title => {
       this.channelTitle = title;
       this.logger.log('HeaderComponent', 'channelTitle', title);
     });
 
     this.route.queryParams.subscribe(params => {
-        this.searchQuery = params['query'] || '';
+        this.searchQuery = params['query'] || this.dataService.searchQuery.getValue();
+        this.dataService.searchQuery.next(this.searchQuery);
       });
 
     this.httpService.spinner.subscribe((val: boolean) => {

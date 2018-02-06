@@ -26,6 +26,7 @@ export class ChannelViewComponent implements OnInit {
     private route: ActivatedRoute, private dataService: DataService) { }
 
   ngOnInit() {
+    console.log('channelviewinit', 'searchquery', this.dataService.searchQuery.getValue());
     // @TODO check is channel subscribed or not (unauthrized api issue)
     this.route.params.subscribe(params => {
       this.channelId = params['id'];

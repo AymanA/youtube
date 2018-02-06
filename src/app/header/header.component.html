@@ -3,6 +3,7 @@
 </div>
 
 <div class="header-container">
+    <!-- <a [routerLink]="['/search']"> -->
     <div class="youtube-icon">
         <i class="fab fa-youtube fa-lg"></i>
     </div>
@@ -13,6 +14,7 @@
         EG
      </small>
     </span>
+    <!-- </a> -->
     <div class="search-container">
         <input type="text" name="query" id="query" [(ngModel)]="searchQuery" (keyup.enter)="searchClick()">
         <button (click)="searchClick()"><i class="fas fa-search"></i>
