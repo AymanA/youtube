@@ -3,18 +3,18 @@
 </div>
 
 <div class="header-container">
-    <!-- <a [routerLink]="['/search']"> -->
-    <div class="youtube-icon">
-        <i class="fab fa-youtube fa-lg"></i>
-    </div>
-    <!-- @TODO make localize code dynamic using regionCode from youtube api -->
-    <span class="youtube-title">
+    <a [routerLink]="['/search']">
+        <div class="youtube-icon">
+            <i class="fab fa-youtube fa-lg"></i>
+        </div>
+        <!-- @TODO make localize code dynamic using regionCode from youtube api -->
+        <span class="youtube-title">
        YouTube
        <small class="youtube-localize">
         EG
      </small>
     </span>
-    <!-- </a> -->
+    </a>
     <div class="search-container">
         <input type="text" name="query" id="query" [(ngModel)]="searchQuery" (keyup.enter)="searchClick()">
         <button (click)="searchClick()"><i class="fas fa-search"></i>
