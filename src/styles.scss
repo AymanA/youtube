@@ -6,14 +6,9 @@ html,
 body {
     margin: 0;
     padding: 0;
-    // height: 100%;
-    // width: 100%;
     font-family: Roboto;
     background-color: $app-background-color;
-    // @media screen and (max-width: $small-screen) {
     @include xs {
         background-color: $white-color;
-        // height: 100%;
-        // width: 100%;
     }
 }

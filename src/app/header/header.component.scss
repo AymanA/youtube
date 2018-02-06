@@ -23,10 +23,15 @@
         height: 34px;
         flex-flow: row nowrap;
         justify-content: flex-start;
-        .youtube-icon {
+        a {
             margin-left: 3%;
-            color: $white-color;
-            padding-top: 7px;
+            .youtube-icon {
+                color: $white-color;
+                padding-top: 7px;
+            }
+            .youtube-title {
+                display: none;
+            }
         }
         .mobile-search-container {
             color: $white-color;
@@ -36,6 +41,16 @@
             span {
                 margin-right: 7%;
                 float: right;
+            }
+        }
+        .mobile-search-input {
+            width: 76%;
+            margin-left: 12%;
+            position: absolute;
+            margin-top: 2%;
+            input {
+                height: 14px;
+                width: 100%;
             }
         }
         .binding-data {
@@ -48,9 +63,6 @@
             .channel-title {
                 text-transform: capitalize;
             }
-        }
-        .youtube-title {
-            display: none;
         }
         .search-container {
             display: none;
@@ -75,7 +87,6 @@
             }
         }
     }
-    // @media screen and (min-width: $medium-screen) {
     @include md {
         position: fixed;
         top: 0;
@@ -86,27 +97,34 @@
         -moz-box-shadow: 0px 3px 10px -2px rgba(148, 148, 148, 1);
         box-shadow: 0px 3px 10px -2px rgba(148, 148, 148, 1);
         .binding-data,
-        .mobile-search-container {
+        .mobile-search-container,
+        .mobile-search-input {
             display: none;
         }
-        .youtube-icon {
+        a {
+            text-decoration: none;
+            color: inherit;
             margin-left: 16%;
-            color: $red-color;
+            width: 15%;
+            margin-right: 5%;
             padding-top: 17px;
-            margin-right: .5%;
-        }
-        .youtube-title {
-            padding-top: 16px;
-            font-weight: bold;
-            .youtube-localize {
-                vertical-align: super;
-                font-weight: normal;
-                opacity: 0.6;
+            .youtube-icon {
+                color: $red-color;
+                margin-right: .5%;
+                display: inline-block;
+            }
+            .youtube-title {
+                display: inline-block;
+                font-weight: bold;
+                .youtube-localize {
+                    vertical-align: super;
+                    font-weight: normal;
+                    opacity: 0.6;
+                }
             }
         }
         .search-container {
-            margin-left: 8%;
-            width: 51%;
+            width: 47%;
             padding: 10px;
             display: flex;
             input {

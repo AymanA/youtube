@@ -7,5 +7,3 @@ export class Config {
     public resultLimit = '10';
 
 }
-// https://www.googleapis.com/youtube/v3/search
-// ?part=snippet&maxResults=25&q=surfing&key=AIzaSyAABomdr-TyJd-yHfrNTEmGwLkwD-R6P8E

@@ -24,6 +24,7 @@ import {
   styleUrls: ['./dropdown-filter.component.scss']
 })
 export class DropdownFilterComponent implements OnInit {
+  // @TODO use lodash instead of default array methods
   @Input() dropDownOptions;
   @Input() dropDownTitle;
   @Input() dropDownId;

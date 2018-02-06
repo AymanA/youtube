@@ -3,16 +3,18 @@
 </div>
 
 <div class="header-container">
-    <div class="youtube-icon">
-        <i class="fab fa-youtube fa-lg"></i>
-    </div>
-    <!-- @TODO make localize code dynamic using regionCode from youtube api -->
-    <span class="youtube-title">
+    <a [routerLink]="['/search']">
+        <div class="youtube-icon">
+            <i class="fab fa-youtube fa-lg"></i>
+        </div>
+        <!-- @TODO make localize code dynamic using regionCode from youtube api -->
+        <span class="youtube-title">
        YouTube
        <small class="youtube-localize">
         EG
      </small>
     </span>
+    </a>
     <div class="search-container">
         <input type="text" name="query" id="query" [(ngModel)]="searchQuery" (keyup.enter)="searchClick()">
         <button (click)="searchClick()"><i class="fas fa-search"></i>
@@ -25,9 +27,14 @@
         <span *ngSwitchCase="'search'">{{searchQuery}}</span>
         <span *ngSwitchDefault>YouTube</span>
     </div>
+    <div class="mobile-search-input">
+        <input type="text" *ngIf="showSearchBar" name="query" id="query" [(ngModel)]="searchQuery" (keyup.enter)="searchClick()">
+
+    </div>
     <div class="mobile-search-container">
-        <span>
-            <i class="fas fa-search fa-sm"></i>
+
+        <span (click)="searchClick()">
+            <i class="fas fa-search fa-sm"  ></i>
         </span>
     </div>
 

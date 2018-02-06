@@ -45,7 +45,6 @@ export class PlaylistCardComponent implements OnInit, OnChanges {
     this.playlistService.getPlaylistItemsById(playlistId).subscribe( data => {
       this.logger.log('PlaylistCardComponent', 'getPlaylistfullDetails', data);
       this.videoId = data.items[0].contentDetails.videoId;
-      // this.isplaylistContentAvailable = true;
     });
   }
 }
