@@ -27,9 +27,14 @@
         <span *ngSwitchCase="'search'">{{searchQuery}}</span>
         <span *ngSwitchDefault>YouTube</span>
     </div>
+    <div class="mobile-search-input">
+        <input type="text" *ngIf="showSearchBar" name="query" id="query" [(ngModel)]="searchQuery" (keyup.enter)="searchClick()">
+
+    </div>
     <div class="mobile-search-container">
-        <span>
-            <i class="fas fa-search fa-sm"></i>
+
+        <span (click)="searchClick()">
+            <i class="fas fa-search fa-sm"  ></i>
         </span>
     </div>
 

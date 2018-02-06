@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   searchQuery = '';
   currentUrl;
   spinner = false;
+  showSearchBar = false;
   channelTitle;
   constructor(private logger: LoggerService,  private router: Router,
     private route: ActivatedRoute, private httpService: HttpService,
@@ -50,6 +51,7 @@ export class HeaderComponent implements OnInit {
   searchClick() {
     this.dataService.searchQuery.next(this.searchQuery);
     this.router.navigate(['search'], { queryParams: { query: this.searchQuery } });
+    this.toggleSearchInput();
   }
 
   getCurrentPath() {
@@ -61,5 +63,9 @@ export class HeaderComponent implements OnInit {
     const currentRoute = routePath ? routePath[1] : '';
     this.dataService.currentRoute.next(currentRoute);
     return currentRoute;
+  }
+
+  toggleSearchInput() {
+    this.showSearchBar = !this.showSearchBar;
   }
 }
