@@ -1,63 +1,65 @@
-<section *ngIf="isVideoDetailsAvailable" class="video-section">
-    <div class="video-wrapper">
-        <div class="video-container" [innerHTML]="getVideoFrame(videoDetails.player.embedHtml)"></div>
-    </div>
-    <div class="video-details">
-        <div class="title-wrapper">
-            <div class="video-title">
-                {{videoDetails.snippet.title}}
+<div class="video-view-container">
+    <div *ngIf="isVideoDetailsAvailable" class="video-section">
+        <div class="video-wrapper">
+            <div class="video-container" [innerHTML]="getVideoFrame(videoDetails.player.embedHtml)"></div>
+        </div>
+        <div class="video-details">
+            <div class="title-wrapper">
+                <div class="video-title">
+                    {{videoDetails.snippet.title}}
+                </div>
+                <i class="material-icons title-arrow">arrow_drop_down</i>
             </div>
-            <i class="material-icons">arrow_drop_down</i>
-        </div>
 
-        <div class="video-watchers">
-            {{videoDetails.statistics.viewCount | number: '1.0-0' }} views
-        </div>
-        <div class="video-actions">
-            <div class="right-actions">
-                <div class="video-likes">
-                    <i class="material-icons">thumb_up</i>
-                    <span>
+            <div class="video-watchers">
+                {{videoDetails.statistics.viewCount | number: '1.0-0' }} views
+            </div>
+            <div class="video-actions">
+                <div class="right-actions">
+                    <div class="video-likes">
+                        <i class="material-icons">thumb_up</i>
+                        <span>
                             {{videoDetails.statistics.likeCount | numberPrecision }}
                     </span>
-                </div>
-                <div class="video-dislikes">
-                    <i class="material-icons">thumb_down</i>
-                    <span>
+                    </div>
+                    <div class="video-dislikes">
+                        <i class="material-icons">thumb_down</i>
+                        <span>
                             {{videoDetails.statistics.dislikeCount | numberPrecision }}
                     </span>
+                    </div>
                 </div>
-            </div>
-            <div class="left-actions">
-                <div class="add-icon">
-                    <i class="material-icons">add</i>
+                <div class="left-actions">
+                    <div class="add-icon">
+                        <i class="material-icons">add</i>
+                    </div>
+                    <div class="share-icon">
+                        <i class="fas fa-share"></i>
+                    </div>
+                    <div class="flag-icon">
+                        <i class="material-icons">flag</i>
+                    </div>
                 </div>
-                <div class="share-icon">
-                    <i class="fas fa-share"></i>
-                </div>
-                <div class="flag-icon">
-                    <i class="material-icons">flag</i>
-                </div>
+
             </div>
 
-        </div>
-
-        <div class="channel-title">
-            {{videoDetails.snippet.channelTitle}}
-        </div>
-        <div class="video-publish-date">
-            Published on {{videoDetails.snippet.publishedAt | amLocale:'en' | amDateFormat:'D MMMM YYYY'}}
+            <div class="channel-title">
+                {{videoDetails.snippet.channelTitle}}
+            </div>
+            <div class="video-publish-date">
+                Published on {{videoDetails.snippet.publishedAt | amLocale:'en' | amDateFormat:'D MMMM YYYY'}}
+            </div>
         </div>
     </div>
-</section>
 
-<div class="related-videos-list">
-    <div *ngIf="isRelatedVideosAvailable">
-        <div *ngFor="let video of relatedVideos">
-            <!-- <app-related-video-card [videoItem]="video" [videoId]="video.id.videoId"></app-related-video-card> -->
-            <app-video-card [videoItem]="video" [videoId]="video.id.videoId"></app-video-card>
+    <div class="related-videos-list">
+        <div *ngIf="isRelatedVideosAvailable">
+            <div *ngFor="let video of relatedVideos">
+                <!-- <app-related-video-card [videoItem]="video" [videoId]="video.id.videoId"></app-related-video-card> -->
+                <app-video-card [videoItem]="video" [videoId]="video.id.videoId"></app-video-card>
+
+            </div>
 
         </div>
-
     </div>
 </div>
