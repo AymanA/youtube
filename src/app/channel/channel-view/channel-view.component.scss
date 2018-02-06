@@ -1,0 +1,129 @@
+@import 'variables';
+.channel-view-container {
+    @include md {
+        border: 1px solid $filter-border-color;
+        margin-top: 65px;
+        .channel-info-container {
+            display: flex;
+            height: 220px;
+            background-color: $app-background-color;
+            color: $dark-font-color;
+            display: flex;
+            flex-direction: column;
+            .channel-banner {
+                height: 60%;
+                -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .channel-img {
+                width: 8%;
+                margin-top: -4%;
+                margin-left: 3%;
+                // position: absolute;
+                img {
+                    border-radius: 50%;
+                    width: 100%;
+                }
+            }
+            .channel-title {
+                margin-left: 9%;
+                text-transform: capitalize;
+                width: 100%;
+            }
+            .channel-subsc-row {
+                display: flex;
+                margin-left: 9%;
+                font-size: 14px;
+                margin-top: .5%;
+                color: $red-color;
+                .youtube-icon {
+                    display: inline-flex;
+                    margin-right: 2%;
+                    div {
+                        padding-left: 5%;
+                        padding-top: 1px;
+                    }
+                }
+                .channel-subsc-count {
+                    color: $dark-font-color;
+                    opacity: .8;
+                    padding-top: 1px;
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .channel-info-container {
+        @include xs {
+            height: 110px;
+            background-color: $app-background-color;
+            color: $dark-font-color;
+            margin-bottom: 3%;
+            .channel-banner {
+                height: 40%;
+                display: flex;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .channel-img {
+                width: 15%;
+                top: 15%;
+                left: 3%;
+                position: absolute;
+                img {
+                    border-radius: 50%;
+                    width: 100%;
+                }
+            }
+            .channel-title {
+                margin-top: 5%;
+                margin-left: 16%;
+                text-transform: capitalize;
+            }
+            .channel-subsc-row {
+                display: flex;
+                margin-left: 16%;
+                font-size: 10px;
+                color: $red-color;
+                .youtube-icon {
+                    display: inline-flex;
+                    margin-right: 2%;
+                    div {
+                        padding-left: 5%;
+                        padding-top: 1px;
+                    }
+                }
+                .channel-subsc-count {
+                    color: $dark-font-color;
+                    opacity: .8;
+                    padding-top: 1px;
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .result-list {
+        @include md {
+            background-color: $white-color!important;
+            width: 99%;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding-top: 1%;
+            padding-left: 1%;
+        }
+    }
+}

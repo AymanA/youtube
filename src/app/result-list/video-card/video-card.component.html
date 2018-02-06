@@ -4,10 +4,12 @@
     <a [routerLink]="['/video', videoId]">
         <div class="thumbnail">
 
-            <img srcset="{{videoSnippet.thumbnails.default?.url}} 320w,
+            <!-- <img srcset="{{videoSnippet.thumbnails.default?.url}} 320w,
             {{videoSnippet.thumbnails.medium ? videoSnippet.thumbnails.medium.url : videoSnippet.thumbnails.default.url}} 480w,
             {{videoSnippet.thumbnails.standard ? videoSnippet.thumbnails.standard.url : videoSnippet.thumbnails.default.url}} 800w" sizes="(max-width: 320px) 280px,
-             (max-width: 480px) 440px, 800px" [src]="videoSnippet.thumbnails.default.url" alt="">
+             (max-width: 480px) 440px, 800px" [src]="videoSnippet.thumbnails.high.url" alt=""> -->
+            <img [src]="videoSnippet.thumbnails.high ? videoSnippet.thumbnails.high.url : videoSnippet.thumbnails.defaul.url" alt="">
+
             <div class="video-duration">
                 {{videoDuration}}
             </div>

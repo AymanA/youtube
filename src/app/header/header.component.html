@@ -3,9 +3,6 @@
 </div>
 
 <div class="header-container">
-    <!-- <span class="youtube-icon">
-        <i class="fab fa-youtube fa-lg"></i>
-    </span> -->
     <div class="youtube-icon">
         <i class="fab fa-youtube fa-lg"></i>
     </div>
@@ -21,11 +18,9 @@
         <button (click)="searchClick()"><i class="fas fa-search"></i>
         </button>
     </div>
-    <!-- <div class="mobile-youtube-icon">
-        <i class="fab fa-youtube fa-lg"></i>
-    </div> -->
+
     <div class="binding-data" [ngSwitch]="getCurrentPath()">
-        <span *ngSwitchCase="'channel'">channel</span>
+        <span *ngSwitchCase="'channel'" class="channel-title">{{channelTitle}}</span>
         <span *ngSwitchCase="'video'">YouTube</span>
         <span *ngSwitchCase="'search'">{{searchQuery}}</span>
         <span *ngSwitchDefault>YouTube</span>

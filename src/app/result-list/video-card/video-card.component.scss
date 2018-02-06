@@ -17,20 +17,20 @@
                 width: 100%;
                 margin: -10.6% 0;
             }
-        }
-        .video-duration {
-            color: white;
-            text-align: right;
-            margin-right: 4px;
-            color: $duration-color;
-            border-radius: 3px;
-            padding: 0 3px;
-            font-weight: bold;
-            background-color: $duration-background-color;
-            position: relative;
-            margin: -10% 2%;
-            float: right;
-            font-size: x-small;
+            .video-duration {
+                color: white;
+                text-align: right;
+                margin-right: 4px;
+                color: $duration-color;
+                border-radius: 3px;
+                padding: 0 3px;
+                font-weight: bold;
+                background-color: $duration-background-color;
+                position: relative;
+                margin: -10% 2%;
+                float: right;
+                font-size: x-small;
+            }
         }
         .video-details {
             height: 100%;
@@ -63,7 +63,7 @@
     }
     @include md {
         width: 100%;
-        height: 100%;
+        height: 90%;
         margin: 5px 0;
         .thumbnail {
             width: 34%;

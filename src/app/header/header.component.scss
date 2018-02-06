@@ -21,6 +21,8 @@
     @include xs {
         background-color: $red-color;
         height: 34px;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
         .youtube-icon {
             margin-left: 3%;
             color: $white-color;
@@ -29,7 +31,8 @@
         .mobile-search-container {
             color: $white-color;
             padding-top: 10px;
-            width: 100%;
+            margin-right: 2%;
+            margin-left: auto;
             span {
                 margin-right: 7%;
                 float: right;
@@ -40,7 +43,11 @@
             color: $white-color;
             padding-top: 10px;
             font-weight: 600;
-            font-size: smaller;
+            font-size: 14px;
+            width: inherit;
+            .channel-title {
+                text-transform: capitalize;
+            }
         }
         .youtube-title {
             display: none;
@@ -86,6 +93,7 @@
             margin-left: 16%;
             color: $red-color;
             padding-top: 17px;
+            margin-right: .5%;
         }
         .youtube-title {
             padding-top: 16px;

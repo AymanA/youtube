@@ -13,20 +13,15 @@ $filter-border-color: #EDEDEE;
 // $small-screen: 425px; // 767
 // $medium-screen: 768px;
 // $large-screen: 1200px;
-// small smartphones 
 $screen-xs-min: 320px;
-// Small tablets and large smartphones (landscape view)
 $screen-sm-min: 576px;
-// Small tablets (portrait view)
 $screen-md-min: 768px;
-// Tablets and small desktops
 $screen-lg-min: 992px;
-// Large tablets and desktops
 $screen-xl-min: 1200px;
 // Mixins
 // Extra Small devices
 @mixin xs {
-    @media (min-width: #{$screen-xs-min}) and (max-width: #{$screen-sm-min - 1px}) {
+    @media (min-width: #{$screen-xs-min}) and (max-width: #{$screen-md-min - 1px}) {
         @content;
     }
 }

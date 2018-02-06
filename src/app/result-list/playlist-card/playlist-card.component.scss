@@ -1,0 +1,142 @@
+@import 'variables';
+.playlist-container {
+    display: flex;
+    a {
+        color: $dark-font-color;
+        height: 100%;
+        width: 100%;
+    }
+    @include xs {
+        width: 95%;
+        margin: 5px 0;
+        margin-left: 3%;
+        .thumbnail {
+            width: 50%;
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            img {
+                width: 100%;
+                margin: -10.6% 0;
+            }
+            .playlist-overlay {
+                width: 40%;
+                position: absolute;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                text-align: center;
+                top: 0;
+                right: 0;
+                color: $white-color;
+                padding-top: 15%;
+                .playlist-items-count {
+                    font-weight: 600;
+                    font-size: smaller;
+                }
+            }
+        }
+        .playlist-details {
+            height: 100%;
+            width: 48%;
+            float: right;
+            font-size: smaller;
+            .playlist-title {
+                display: inline-block;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+            .playlist-info {
+                .playlist-channel-title,
+                .playlist-view-count,
+                {
+                    opacity: .6;
+                    display: inline-block;
+                    width: 100%;
+                }
+            }
+            .playlist-description,
+            .playlist-publish-at,
+            .view-all-playlist {
+                display: none;
+            }
+        }
+    }
+    @include md {
+        width: 100%;
+        height: 90%;
+        margin: 5px 0;
+        .thumbnail {
+            width: 34%;
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            img {
+                width: 100%;
+                margin: -10.6% 0;
+            }
+            .playlist-overlay {
+                width: 40%;
+                position: absolute;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                text-align: center;
+                top: 0;
+                right: 0;
+                color: $white-color;
+                padding-top: 23%;
+                .playlist-items-count {
+                    font-weight: 600;
+                    font-size: smaller;
+                }
+            }
+        }
+        .playlist-details {
+            height: 100%;
+            padding-top: 5px;
+            width: 64%;
+            float: right;
+            font-size: large;
+            .playlist-title {
+                overflow: hidden;
+                display: inline-block;
+                width: 100%;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+            .playlist-info {
+                display: inline-flex;
+                width: 85%;
+                margin-bottom: 15px;
+                font-weight: 300;
+                .playlist-channel-title,
+                .playlist-view-count,
+                .playlist-publish-at {
+                    width: auto;
+                }
+            }
+            .playlist-description {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                font-weight: lighter;
+                font-size: medium;
+                margin-bottom: 15px;
+            }
+            .view-all-playlist {
+                font-size: medium;
+                font-weight: 400;
+            }
+        }
+    }
+    // @include lg {
+    //     display: block;
+    // }
+}

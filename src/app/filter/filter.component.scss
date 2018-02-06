@@ -18,15 +18,12 @@
             border: solid #EDEDED 1px;
             text-decoration: none;
         }
-        .order-filter {
-            display: none;
-        }
         .filter-control-row,
         .filter-title {
             display: none;
         }
         .filters-group {
-            display: flex;
+            display: flex !important;
             width: 100%;
             .type-filter {
                 width: 25%;
@@ -36,6 +33,9 @@
             .time-filter {
                 width: 25%;
                 order: 2;
+            }
+            .order-filter {
+                display: none;
             }
         }
     }

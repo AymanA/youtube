@@ -13,6 +13,7 @@ import { VideoDetailedSnippet } from '../../common/models/video/videoItem/video-
 import { VideoStatistics } from '../../common/models/video/videoItem/video-statistics';
 import { ListItemContent } from '../../common/models/list-item-content';
 import { VideoItem } from '../../common/models/video/videoItem/video-item';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-video-card',
@@ -21,23 +22,28 @@ import { VideoItem } from '../../common/models/video/videoItem/video-item';
 })
 export class VideoCardComponent implements OnInit, OnChanges {
   @Input() videoItem;
+  @Input() videoId;
   videoContent: ListItemContent<VideoItem>;
   isVideoContentAvailable = false;
   videoSnippet: VideoDetailedSnippet;
   videoStatistics: VideoStatistics;
-  videoId: string;
   videoDuration;
-  constructor(private videoService: VideoService, private logger: LoggerService) {}
+  currentRoute;
+  constructor(private videoService: VideoService, private logger: LoggerService,
+      private dataService: DataService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentRoute = this.dataService.currentRoute.getValue();
+    this.dataService.currentRoute.subscribe( value => this.currentRoute = value);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.videoItem.currentValue) {
       this.videoId = changes.videoItem.currentValue.id.videoId;
       this.getVideoDetails(this.videoId);
     }
-
   }
+
   getVideoDetails(id: string) {
     this.videoService.getVideoDetailsById(id).subscribe(res => {
       this.logger.log('videocardComp', 'getVideoDetails', res);
@@ -49,6 +55,7 @@ export class VideoCardComponent implements OnInit, OnChanges {
     });
   }
 
+  // @TODO handle videos with wrong durations
   getVideoDuration(videoDuration: string) {
     const pattern = /PT((([0-9]+)H)?([0-9]+)M)?(([0-9]+)S)?/;
     const result = pattern.exec(videoDuration);

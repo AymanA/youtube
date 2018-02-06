@@ -1,26 +1,44 @@
-<div *ngIf="isChannelContentAvailable">
-    <div class="channel-info-container">
+<div *ngIf="isChannelContentAvailable" class="channel-view-container">
+    <section class="channel-info-container">
         <div class="channel-banner">
-            <img [src]="channelBrandingSettings.image.bannerImageUrl" alt="">
+            <img srcset="{{channelBrandingSettings.image.bannerMobileHdImageUrl}} 320w,
+        {{channelBrandingSettings.image.bannerMobileHdImageUrl}} 480w,
+        {{channelBrandingSettings.image.bannerImageUrl}} 800w" sizes="(max-width: 320px) 280px,
+       (max-width: 480px) 440px,
+       800px" [src]="channelBrandingSettings.image.bannerImageUrl" alt="">
         </div>
         <div class="channel-img">
-            <img [src]="channelSnippet.thumbnails.default.url" alt="">
+            <!-- <img [src]="channelSnippet.thumbnails.high ? channelSnippet.thumbnails.high.url : channelSnippet.thumbnails.defaul.url" alt=""> -->
+            <img [src]="channelSnippet.thumbnails.high.url" alt="">
+            <!-- <img [src]="channelSnippet.thumbnails.medium.url" alt="">
+        <img [src]="channelSnippet.thumbnails.default.url" alt=""> -->
+
         </div>
         <div class="channel-title">
             {{channelSnippet.title}}
         </div>
-        <!-- @TODO show subscribe button if this channel not subscribed   -->
-        <div class="channel-subsc-count">
-            {{channelStatistics.subscriberCount | numberPrecision}} subscribers
+        <!-- @TODO show subscribe button if this channel not subscribed (unauthorized issue)  -->
+        <div class="channel-subsc-row">
+            <div class="youtube-icon">
+                <i class="fab fa-youtube fa-lg"></i>
+                <div>
+                    SUBSCRIBE
+                </div>
+            </div>
+            <div class="channel-subsc-count">
+                {{channelStatistics.subscriberCount | numberPrecision}}
+                <span>subscribers</span>
+            </div>
         </div>
 
-    </div>
-</div>
 
-<div *ngIf="isChannelPlaylistItemsAvailable">
-    <div *ngFor="let listItem of channelSectionVideos">
-        <app-related-video-card [videoItem]="listItem" [videoId]="listItem.contentDetails.videoId"></app-related-video-card>
-        <!-- <app-video-card [videoItem]="listItem" [videoId]="listItem.contentDetails.videoId"></app-video-card> -->
-    </div>
+    </section>
+
+
+    <section *ngIf="isChannelPlaylistsAvailable" class="result-list">
+        <div *ngFor="let playlist of channelPlaylists">
+            <app-playlist-card [playlistItem]="playlist" [playlistId]="playlist.id"></app-playlist-card>
+        </div>
+    </section>
 
 </div>

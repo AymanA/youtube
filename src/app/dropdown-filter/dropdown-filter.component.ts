@@ -10,12 +10,14 @@ import {
   LoggerService
 } from '../services/logger.service';
 import {
-  SearchService
-} from '../services/search.service';
+  DataService
+} from '../services/data.service';
 import {
   FilterObject
 } from '../common/models/custom-models/filter-object';
-import { DateFormatPipe } from 'angular2-moment';
+import {
+  DateFormatPipe
+} from 'angular2-moment';
 @Component({
   selector: 'app-dropdown-filter',
   templateUrl: './dropdown-filter.component.html',
@@ -32,11 +34,11 @@ export class DropdownFilterComponent implements OnInit {
   filterParamsObjects: FilterObject[];
 
 
-  constructor(private logger: LoggerService, private searchService: SearchService) {}
+  constructor(private logger: LoggerService, private dataService: DataService) {}
 
   ngOnInit() {
     this.getDeviceType();
-    this.searchService.filterParameters.subscribe(filters => this.filterParamsObjects = filters);
+    this.dataService.filterParameters.subscribe(filters => this.filterParamsObjects = filters);
   }
 
   toggle() {
@@ -45,9 +47,12 @@ export class DropdownFilterComponent implements OnInit {
 
   onClick(event, selectedOption) {
     this.clicked.emit();
-    const filterObject: FilterObject = {queryParamName: this.queryParamName, filterValue: ''};
+    const filterObject: FilterObject = {
+      queryParamName: this.queryParamName,
+      filterValue: ''
+    };
     if (this.queryParamName === 'publishedAfter') {
-      filterObject.filterValue =  this.getRFCTimeFormat(selectedOption.value);
+      filterObject.filterValue = this.getRFCTimeFormat(selectedOption.value);
     } else {
       filterObject.filterValue = selectedOption.value;
     }
@@ -70,15 +75,19 @@ export class DropdownFilterComponent implements OnInit {
   }
 
   updateFilterObject(filterObject: FilterObject) {
-    const indexOfObject = this.filterParamsObjects.
-    findIndex(item => item.queryParamName === filterObject.queryParamName);
-    console.log('indexofobject', indexOfObject);
-    if (indexOfObject === -1 ) {
-      this.filterParamsObjects.push(filterObject);
+    if (filterObject.filterValue === 'all' || filterObject.filterValue === 'any') {
+      this.resetCurrentFilter(filterObject);
     } else {
-      this.filterParamsObjects[indexOfObject] = filterObject;
+      const indexOfObject = this.filterParamsObjects.
+      findIndex(item => item.queryParamName === filterObject.queryParamName);
+      console.log('indexofobject', indexOfObject);
+      if (indexOfObject === -1) {
+        this.filterParamsObjects.push(filterObject);
+      } else {
+        this.filterParamsObjects[indexOfObject] = filterObject;
+      }
     }
-    this.searchService.filterParameters.next(this.filterParamsObjects);
+    this.dataService.filterParameters.next(this.filterParamsObjects);
   }
 
   handleOptionSelection(event) {
@@ -106,11 +115,12 @@ export class DropdownFilterComponent implements OnInit {
   }
 
   removeSelected(event, option) {
+    this.clicked.emit();
     this.resetSelectedOptions(event);
     this.filterParamsObjects = this.filterParamsObjects.filter(element => {
       return element.filterValue !== option.value;
     });
-    this.searchService.filterParameters.next(this.filterParamsObjects);
+    this.dataService.filterParameters.next(this.filterParamsObjects);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -160,9 +170,18 @@ export class DropdownFilterComponent implements OnInit {
         break;
 
       default:
+      rfcTime = 'any';
         break;
     }
     return rfcTime;
+  }
+
+  resetCurrentFilter(filterObject: FilterObject) {
+    const indexOfObject = this.filterParamsObjects.
+    findIndex(item => item.queryParamName === filterObject.queryParamName);
+    if (indexOfObject !== -1) {
+      this.filterParamsObjects.splice(indexOfObject);
+    }
   }
 
 }
