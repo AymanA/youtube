@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistCardComponent } from './playlist-card.component';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { PlaylistService } from '../../services/playlist.service';
+import { LoggerService } from '../../services/logger.service';
+import { HttpService } from '../../services/http.service';
+import { Config } from '../../app.config';
 
 describe('PlaylistCardComponent', () => {
   let component: PlaylistCardComponent;
@@ -8,7 +15,19 @@ describe('PlaylistCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaylistCardComponent ]
+      imports: [
+        FormsModule,
+        HttpModule,
+        RouterTestingModule
+      ],
+      declarations: [ PlaylistCardComponent
+      ],
+      providers: [
+        PlaylistService,
+        LoggerService,
+        HttpService,
+        Config
+      ]
     })
     .compileComponents();
   }));
