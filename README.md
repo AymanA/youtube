@@ -2,7 +2,7 @@
 
   
 
-An implementation for youtube front end app
+An implementation for youtube app using angular 
 
   
 
