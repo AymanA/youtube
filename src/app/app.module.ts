@@ -30,6 +30,9 @@ import { PlaylistCardComponent } from './result-list/playlist-card/playlist-card
 import { PlaylistService } from './services/playlist.service';
 import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProgressBarService } from './services/progress-bar.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,8 +51,9 @@ import { BrowserXhr } from '@angular/http';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
-    HttpModule,
+    // HttpModule,
     AppRoutingModule,
     MomentModule,
     MdProgressBarModule,
@@ -57,7 +61,7 @@ import { BrowserXhr } from '@angular/http';
     NgProgressModule
   ],
   providers: [
-    HttpService,
+    // HttpService,
     Config,
     YoutubeService,
     VideoService,
@@ -65,7 +69,13 @@ import { BrowserXhr } from '@angular/http';
     ChannelService,
     DataService,
     PlaylistService,
-    {provide: BrowserXhr, useClass: NgProgressBrowserXhr}
+    {provide: BrowserXhr, useClass: NgProgressBrowserXhr},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpService,
+      multi: true
+    },
+    ProgressBarService
   ],
   bootstrap: [AppComponent]
 })

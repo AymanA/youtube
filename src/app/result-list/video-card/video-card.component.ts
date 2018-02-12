@@ -45,9 +45,9 @@ export class VideoCardComponent implements OnInit, OnChanges {
   }
 
   getVideoDetails(id: string) {
-    this.videoService.getVideoDetailsById(id).subscribe(res => {
-      this.logger.log('videocardComp', 'getVideoDetails', res);
-      this.videoContent = res;
+    this.videoService.getVideoDetailsById(id).subscribe((data: any) => {
+      this.logger.log('videocardComp', 'getVideoDetails', data);
+      this.videoContent = data;
       this.videoSnippet = this.videoContent.items[0] ? this.videoContent.items[0].snippet : {};
       this.videoStatistics = this.videoContent.items[0].statistics;
       this.getVideoDuration(this.videoContent.items[0].contentDetails.duration);

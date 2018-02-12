@@ -26,9 +26,9 @@ export class VideoViewComponent implements OnInit {
     });
   }
   getVideoDetails(videoId: string) {
-    this.videoService.getVideoViewDetailsById(videoId).subscribe(res => {
-      this.logger.log('VideoViewComponent', 'getVideoDetails', res);
-      this.videoDetails = res.items[0];
+    this.videoService.getVideoViewDetailsById(videoId).subscribe((data: any) => {
+      this.logger.log('VideoViewComponent', 'getVideoDetails', data);
+      this.videoDetails = data.items[0];
       this.isVideoDetailsAvailable = true;
     });
   }
@@ -38,9 +38,9 @@ export class VideoViewComponent implements OnInit {
   }
 
   getRelatedVideos(videoId: string) {
-    this.videoService.getRelatedVideos(videoId).subscribe(res => {
-      this.logger.log('VideoViewComponent', 'getRelatedVideos', res);
-      this.relatedVideos = res.items;
+    this.videoService.getRelatedVideos(videoId).subscribe((data: any) => {
+      this.logger.log('VideoViewComponent', 'getRelatedVideos', data);
+      this.relatedVideos = data.items;
       this.isRelatedVideosAvailable = true;
     });
   }
