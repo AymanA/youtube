@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, NavigationStart, Event, NavigationEnd } from '@
 import { Observable } from 'rxjs/Observable';
 import { HttpService } from '../services/http.service';
 import { DataService } from '../services/data.service';
+import { ProgressBarService } from '../services/progress-bar.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   showSearchBar = false;
   channelTitle;
   constructor(private logger: LoggerService,  private router: Router,
-    private route: ActivatedRoute, private httpService: HttpService,
+    private route: ActivatedRoute, private progressBarService: ProgressBarService,
     private dataService: DataService) { }
 
   ngOnInit() {
@@ -42,7 +43,7 @@ export class HeaderComponent implements OnInit {
         this.dataService.searchQuery.next(this.searchQuery);
       });
 
-    this.httpService.spinner.subscribe((val: boolean) => {
+    this.progressBarService.spinner.subscribe((val: boolean) => {
       this.spinner = val;
       this.logger.log('HeaderComponent', 'init', 'spinner', this.spinner);
     });

@@ -37,9 +37,9 @@ export class ChannelCardComponent implements OnInit, OnChanges {
 
   }
   getChannelDetails(id: string) {
-    this.channelService.getChannelCardDetailsById(id).subscribe(res => {
-      this.logger.log('channelcardComp', 'getChannelDetails', res);
-      this.channelContent = res;
+    this.channelService.getChannelCardDetailsById(id).subscribe((data: any) => {
+      this.logger.log('channelcardComp', 'getChannelDetails', data);
+      this.channelContent = data;
       this.channelSnippet = this.channelContent.items[0].snippet;
       this.channelStatistics = this.channelContent.items[0].statistics;
       this.isChannelContentAvailable = true;

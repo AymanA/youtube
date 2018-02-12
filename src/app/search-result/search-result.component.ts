@@ -40,7 +40,7 @@ export class SearchResultComponent implements OnInit {
       });
 
     this.dataService.filterParameters.subscribe( filters => {
-      console.log('vipissuefilters', filters);
+      this.logger.log('SearchResultComponentSearchResultComponent', 'ngOnInit', 'issuefilters', filters);
       this.filters = filters;
       this.prepareQueryWithFilters(this.filters);
     });
@@ -58,11 +58,11 @@ export class SearchResultComponent implements OnInit {
 
   getQueryResult(query: string, filterQuery?: string) {
     this.youtubeService.getQueryResult(query, filterQuery)
-      .subscribe(res => {
-        this.logger.log('SearchResultComponent', 'getQueryResult', res);
-        this.resultList = res.items;
-        this.nextPageToken = res.nextPageToken;
-        this.dataService.totalResult.next(res.pageInfo.totalResults);
+      .subscribe((data: any) => {
+        this.logger.log('SearchResultComponent', 'getQueryResult', data);
+        this.resultList = data.items;
+        this.nextPageToken = data.nextPageToken;
+        this.dataService.totalResult.next(data.pageInfo.totalResults);
       });
   }
 
@@ -73,10 +73,10 @@ export class SearchResultComponent implements OnInit {
     this.youtubeService.getMoreItems(this.searchQuery, this.nextPageToken, filterString)
     .debounceTime(2000)
     .distinctUntilChanged()
-    .subscribe(res => {
-        this.logger.log('SearchResultComponent', 'loadMoreItems', res);
-        this.resultList = this.resultList.concat(res.items);
-        this.nextPageToken = res.nextPageToken;
+    .subscribe((data: any) => {
+        this.logger.log('SearchResultComponent', 'loadMoreItems', data);
+        this.resultList = this.resultList.concat(data.items);
+        this.nextPageToken = data.nextPageToken;
         this.loadingMoreData = false;
         this.scrolled = false;
       }, err => {

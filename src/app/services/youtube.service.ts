@@ -5,11 +5,21 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Http, Headers, Response } from '@angular/http';
 import { Config } from '../app.config';
+import { HttpClient } from '@angular/common/http';
+import * as _ from 'lodash';
+export interface SearchResult {
+  etag: string;
+  items: any;
+  kind: string;
+  nextPageToken: string;
+  pageInfo: any;
+  regionCode: string;
+}
 
 @Injectable()
 export class YoutubeService {
 
-  constructor(private httpService: HttpService,
+  constructor(private httpService: HttpClient,
     private cfg: Config, ) { }
 
   getQueryResult(query: string, filter?: string) {
@@ -19,7 +29,7 @@ export class YoutubeService {
       queryParams += filter;
     }
     return this.httpService.get(queryParams)
-    .map(response => response.json());
+    .map(response => response);
   }
 
   getMoreItems(query: string, nextPageToken: string, filter?: string) {
@@ -29,7 +39,7 @@ export class YoutubeService {
       queryParams += filter;
     }
     return this.httpService.get(queryParams)
-    .map(response => response.json());
+    .map(response => response);
 
   }
 }

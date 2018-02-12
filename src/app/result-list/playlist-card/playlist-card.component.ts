@@ -35,14 +35,14 @@ export class PlaylistCardComponent implements OnInit, OnChanges {
 
   getPlaylistContentDetails(playlistId: string) {
     this.logger.log('PlaylistCardComponent', 'getPlaylistDetails', 'playlistid', playlistId);
-    this.playlistService.getPlaylistItemsCountById(playlistId).subscribe( data => {
+    this.playlistService.getPlaylistItemsCountById(playlistId).subscribe( (data: any) => {
       this.logger.log('PlaylistCardComponent', 'getPlaylistDetails', data);
       this.playlistItemsCount = data.items[0].contentDetails.itemCount;
       this.isplaylistContentAvailable = true;
     });
   }
   getPlaylistVideoId(playlistId: string) {
-    this.playlistService.getPlaylistItemsById(playlistId).subscribe( data => {
+    this.playlistService.getPlaylistItemsById(playlistId).subscribe( (data: any) => {
       this.logger.log('PlaylistCardComponent', 'getPlaylistfullDetails', data);
       this.videoId = data.items[0].contentDetails.videoId;
     });

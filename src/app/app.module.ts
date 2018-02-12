@@ -28,8 +28,12 @@ import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlaylistCardComponent } from './result-list/playlist-card/playlist-card.component';
 import { PlaylistService } from './services/playlist.service';
-import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
+import { NgProgressModule } from '@ngx-progressbar/core';
 import { BrowserXhr } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProgressBarService } from './services/progress-bar.service';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,15 +53,17 @@ import { BrowserXhr } from '@angular/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     MomentModule,
     MdProgressBarModule,
     BrowserAnimationsModule,
-    NgProgressModule
+    NgProgressModule.forRoot({
+      color: '#ff0000',
+    }),
+    NgProgressHttpModule
   ],
   providers: [
-    HttpService,
     Config,
     YoutubeService,
     VideoService,
@@ -65,7 +71,12 @@ import { BrowserXhr } from '@angular/http';
     ChannelService,
     DataService,
     PlaylistService,
-    {provide: BrowserXhr, useClass: NgProgressBrowserXhr}
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpService,
+      multi: true
+    },
+    ProgressBarService
   ],
   bootstrap: [AppComponent]
 })

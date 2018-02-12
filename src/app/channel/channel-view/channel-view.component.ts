@@ -36,7 +36,7 @@ export class ChannelViewComponent implements OnInit {
   }
 
   getChannelDetails(id: string) {
-    this.channelService.getChannelViewDetailsById(id).subscribe(data => {
+    this.channelService.getChannelViewDetailsById(id).subscribe((data: any) => {
       this.logger.log('ChannelViewComponent', 'getChannelDetails', data);
       this.channelContent = data;
       this.channelSnippet = this.channelContent.items[0].snippet;
@@ -48,7 +48,7 @@ export class ChannelViewComponent implements OnInit {
   }
 
   getChannelSectionData(channelId: string) {
-    this.channelService.getChannelSectionData(channelId).subscribe(data => {
+    this.channelService.getChannelSectionData(channelId).subscribe((data: any) => {
       this.logger.log('ChannelViewComponent', 'getChannelSectionData', data);
       this.channelSectionPlaylists = data.items;
       const playlistId = this.channelSectionPlaylists[0].contentDetails.playlists[0];
@@ -57,7 +57,7 @@ export class ChannelViewComponent implements OnInit {
   }
 
   getChannelPlaylists(channelId: string) {
-    this.channelService.getChannelPlaylists(channelId).subscribe( data => {
+    this.channelService.getChannelPlaylists(channelId).subscribe( (data: any) => {
       this.logger.log('ChannelViewComponent', 'getChannelplaylists', data);
       this.channelPlaylists = data.items;
       this.isChannelPlaylistsAvailable = true;
@@ -66,7 +66,7 @@ export class ChannelViewComponent implements OnInit {
 
   getPlaylistItems(playlistId: string) {
     this.logger.log('ChannelViewComponent', 'getPlaylistItems', 'playlistId', playlistId);
-    this.channelService.getPlaylistItems(playlistId).subscribe(data => {
+    this.channelService.getPlaylistItems(playlistId).subscribe((data: any) => {
       this.logger.log('ChannelViewComponent', 'getPlaylistItems', data);
       this.channelSectionVideos = data.items;
       this.isChannelPlaylistItemsAvailable = true;
