@@ -27,11 +27,10 @@ import { DataService } from './services/data.service';
 import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlaylistCardComponent } from './result-list/playlist-card/playlist-card.component';
-import { PlaylistService } from './services/playlist.service';
-import { NgProgressModule } from '@ngx-progressbar/core';
-import { BrowserXhr } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProgressBarService } from './services/progress-bar.service';
+import { PlaylistService } from './services/playlist.service';
+import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 @NgModule({
