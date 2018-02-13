@@ -34,9 +34,13 @@ import {
 import {
   NumberPrecisionPipe
 } from './common/pipes/number-precision.pipe';
-import { Config } from './app.config';
-import { DataService } from './services/data.service';
-describe('AppComponent', () => {
+import {
+  Config
+} from './app.config';
+import {
+  DataService
+} from './services/data.service';
+fdescribe('AppComponent', () => {
   beforeEach(async (() => {
     TestBed.configureTestingModule({
       imports: [
