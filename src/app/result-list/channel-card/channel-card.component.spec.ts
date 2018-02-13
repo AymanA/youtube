@@ -2,13 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChannelCardComponent } from './channel-card.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { NumberPrecisionPipe } from '../../common/pipes/number-precision.pipe';
 import { ChannelService } from '../../services/channel.service';
 import { HttpService } from '../../services/http.service';
 import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../app.config';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('ChannelCardComponent', () => {
   let component: ChannelCardComponent;
@@ -18,8 +18,8 @@ describe('ChannelCardComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        HttpModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [
         ChannelCardComponent,

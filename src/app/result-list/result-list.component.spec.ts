@@ -11,7 +11,6 @@ import { ChannelCardComponent } from './channel-card/channel-card.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { PlaylistCardComponent } from './playlist-card/playlist-card.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { NumberPrecisionPipe } from '../common/pipes/number-precision.pipe';
 import { MomentModule } from 'angular2-moment';
@@ -24,7 +23,6 @@ describe('ResultListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        HttpModule,
         RouterTestingModule,
         MomentModule
       ],

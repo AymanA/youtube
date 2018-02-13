@@ -3,13 +3,13 @@ import { TestBed, inject } from '@angular/core/testing';
 import { VideoService } from './video.service';
 import { Config } from '../app.config';
 import { HttpService } from './http.service';
-import { HttpModule } from '@angular/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VideoService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpModule
+        HttpClientTestingModule
       ],
       providers: [
         VideoService,

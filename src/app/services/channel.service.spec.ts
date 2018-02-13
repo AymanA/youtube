@@ -2,14 +2,14 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ChannelService } from './channel.service';
 import { HttpService } from './http.service';
-import { HttpModule } from '@angular/http';
 import { Config } from '../app.config';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ChannelService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpModule
+        HttpClientTestingModule
       ],
       providers: [
         ChannelService,
