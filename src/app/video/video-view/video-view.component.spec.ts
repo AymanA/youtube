@@ -7,9 +7,9 @@ import { VideoCardComponent } from '../../result-list/video-card/video-card.comp
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoggerService } from '../../services/logger.service';
 import { VideoService } from '../../services/video.service';
-import { HttpModule } from '@angular/http';
 import { HttpService } from '../../services/http.service';
 import { Config } from '../../app.config';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VideoViewComponent', () => {
   let component: VideoViewComponent;
@@ -19,8 +19,8 @@ describe('VideoViewComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MomentModule,
-        HttpModule,
         RouterTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [
         VideoViewComponent,

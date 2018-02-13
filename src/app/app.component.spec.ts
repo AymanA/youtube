@@ -29,7 +29,6 @@ import {
   Http,
   ResponseOptions,
   BaseRequestOptions,
-  HttpModule
 } from '@angular/http';
 import {
   NumberPrecisionPipe
@@ -40,27 +39,30 @@ import {
 import {
   DataService
 } from './services/data.service';
-fdescribe('AppComponent', () => {
+import { NgProgressModule, NgProgressComponent, NgProgress } from '@ngx-progressbar/core';
+import { ProgressBarService } from './services/progress-bar.service';
+describe('AppComponent', () => {
   beforeEach(async (() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        HttpModule,
         RouterTestingModule,
-
+        NgProgressModule,
       ],
       declarations: [
         AppComponent,
         HeaderComponent,
         MdProgressBar,
         NumberPrecisionPipe,
+
       ],
       providers: [
         LoggerService,
         HttpService,
         Config,
-        DataService
-
+        DataService,
+        ProgressBarService,
+        NgProgress,
       ]
     }).compileComponents();
   }));

@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchResultComponent } from './search-result.component';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FilterComponent } from '../filter/filter.component';
 import { YoutubeService } from '../services/youtube.service';
@@ -19,6 +18,7 @@ import { PlaylistCardComponent } from '../result-list/playlist-card/playlist-car
 import { NumberPrecisionPipe } from '../common/pipes/number-precision.pipe';
 import { MomentModule } from 'angular2-moment';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SearchResultComponent', () => {
   let component: SearchResultComponent;
@@ -28,10 +28,10 @@ describe('SearchResultComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        HttpModule,
         RouterTestingModule,
         MomentModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        HttpClientTestingModule
     ],
       declarations: [
         SearchResultComponent,

@@ -5,10 +5,11 @@ import { MdProgressBar } from '@angular2-material/progress-bar/progress-bar';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { LoggerService } from '../services/logger.service';
-import { HttpModule } from '@angular/http';
 import { HttpService } from '../services/http.service';
 import { Config } from '../app.config';
 import { DataService } from '../services/data.service';
+import { NgProgressModule, NgProgress } from '@ngx-progressbar/core';
+import { ProgressBarService } from '../services/progress-bar.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -18,15 +19,17 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        HttpModule,
-        RouterTestingModule
+        RouterTestingModule,
+        NgProgressModule
       ],
       declarations: [ HeaderComponent, MdProgressBar ],
       providers: [
         HttpService,
         DataService,
         LoggerService,
-        Config
+        Config,
+        NgProgress,
+        ProgressBarService
       ]
     })
     .compileComponents();

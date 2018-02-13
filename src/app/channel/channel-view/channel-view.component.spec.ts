@@ -7,7 +7,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoggerService } from '../../services/logger.service';
 import { ChannelService } from '../../services/channel.service';
 import { HttpService } from '../../services/http.service';
-import { HttpModule } from '@angular/http';
 import { Config } from '../../app.config';
 import { DataService } from '../../services/data.service';
 // describe('ChannelViewComponent', () => {
@@ -17,7 +16,6 @@ import { DataService } from '../../services/data.service';
   // beforeEach(async(() => {
   //   TestBed.configureTestingModule({
   //     imports: [
-  //       HttpModule,
   //       RouterTestingModule],
   //     declarations: [
   //       ChannelViewComponent,
