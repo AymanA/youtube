@@ -14,6 +14,12 @@
     }
 }
 
+.progress-container {
+    @include xs {
+        display: none;
+    }
+}
+
 .header-container {
     width: 100%;
     display: -webkit-inline-flex;
